@@ -1,14 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import HomePage from './component/Home Page/HomePage';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ProductScreen from './src/screen/ProductScreen';
+import InfoScreen from './src/screen/InfoScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View>
-      <HomePage/>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="ProductScreen">
+        <Stack.Screen name="ProductScreen" component={ProductScreen} options={{ title: 'Products' }} />
+        <Stack.Screen name="InfoScreen" component={InfoScreen} options={{ title: 'Product Info' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-

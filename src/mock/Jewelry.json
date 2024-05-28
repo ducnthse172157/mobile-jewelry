@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Nhẫn Ruby",
+    "mainMetalWeight": "10g vàng 18K",
+    "mainGemstone": "Ruby",
+    "sideGemstones": "Kim cương",
+    "description": "Nhẫn vàng 18K đính đá ruby và kim cương.",
+    "price": "$2,500",
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.matthewsjewelers.com%2F5-tips-to-take-care-of-ruby-jewelry-including-a-ruby-ring-in-plantation%2F&psig=AOvVaw2M1a2OtvR9s0YcibAX1dX4&ust=1716971771996000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMDFq6H4r4YDFQAAAAAdAAAAABAE"
+  },
+  {
+    "id": 2,
+    "name": "Dây chuyền Sapphire",
+    "mainMetalWeight": "15g vàng trắng",
+    "mainGemstone": "Sapphire",
+    "sideGemstones": "Kim cương",
+    "description": "Dây chuyền vàng trắng đính đá sapphire và kim cương.",
+    "price": "$3,000",
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Furaloguz.com%2F%3Fe%3Dseraphinite-stone-necklace-copper-electroformed-%25E2%2580%2593-niko-nimba-gg-9MYd6QT8&psig=AOvVaw1zEQLDMeWvIJUHzFAxh8tI&ust=1716971811462000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLj5obb4r4YDFQAAAAAdAAAAABAP"
+  },
+  {
+    "id": 3,
+    "name": "Nhẫn Ruby",
+    "mainMetalWeight": "10g vàng 18K",
+    "mainGemstone": "Ruby",
+    "sideGemstones": "Kim cương",
+    "description": "Nhẫn vàng 18K đính đá ruby và kim cương.",
+    "price": "$2,500",
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.matthewsjewelers.com%2F5-tips-to-take-care-of-ruby-jewelry-including-a-ruby-ring-in-plantation%2F&psig=AOvVaw2M1a2OtvR9s0YcibAX1dX4&ust=1716971771996000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMDFq6H4r4YDFQAAAAAdAAAAABAE"
+  },
+  {
+    "id": 4,
+    "name": "Nhẫn Ruby",
+    "mainMetalWeight": "10g vàng 18K",
+    "mainGemstone": "Ruby",
+    "sideGemstones": "Kim cương",
+    "description": "Nhẫn vàng 18K đính đá ruby và kim cương.",
+    "price": "$2,500",
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.matthewsjewelers.com%2F5-tips-to-take-care-of-ruby-jewelry-including-a-ruby-ring-in-plantation%2F&psig=AOvVaw2M1a2OtvR9s0YcibAX1dX4&ust=1716971771996000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMDFq6H4r4YDFQAAAAAdAAAAABAE"
+  },
+  {
+    "id": 5,
+    "name": "Nhẫn Ruby",
+    "mainMetalWeight": "10g vàng 18K",
+    "mainGemstone": "Ruby",
+    "sideGemstones": "Kim cương",
+    "description": "Nhẫn vàng 18K đính đá ruby và kim cương.",
+    "price": "$2,500",
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.matthewsjewelers.com%2F5-tips-to-take-care-of-ruby-jewelry-including-a-ruby-ring-in-plantation%2F&psig=AOvVaw2M1a2OtvR9s0YcibAX1dX4&ust=1716971771996000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMDFq6H4r4YDFQAAAAAdAAAAABAE"
+  },
+  {
+    "id": 6,
+    "name": "Vòng tay ngọc lục bảo",
+    "mainMetalWeight": "20g vàng 18K",
+    "mainGemstone": "Ngọc lục bảo",
+    "sideGemstones": "Kim cương",
+    "description": "Vòng tay vàng 18K đính đá Ngọc lục bảo và kim cương.",
+    "price": "$2,500",
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fdaquyphongthuylnj.com%2Fnha%25CC%2582%25CC%2583n-nu%25CC%259B%25CC%2583-vang-gold-14k-da-ruby-thie%25CC%2582n-nhie%25CC%2582n-dinh-ta%25CC%2582m-kim-cu%25CC%259Bo%25CC%259Bng%2F&psig=AOvVaw3T-0FN0zwmcJBuA8olj04r&ust=1716972345353000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCIjO-bX6r4YDFQAAAAAdAAAAABAE"
+  }
+]
