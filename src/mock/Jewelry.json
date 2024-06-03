@@ -1,62 +1,307 @@
-[
-  {
-    "id": 1,
-    "name": "Nhẫn Ruby",
-    "mainMetalWeight": "10g vàng 18K",
-    "mainGemstone": "Ruby",
-    "sideGemstones": "Kim cương",
-    "description": "Nhẫn vàng 18K đính đá ruby và kim cương.",
-    "price": "$2,500",
-    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.matthewsjewelers.com%2F5-tips-to-take-care-of-ruby-jewelry-including-a-ruby-ring-in-plantation%2F&psig=AOvVaw2M1a2OtvR9s0YcibAX1dX4&ust=1716971771996000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMDFq6H4r4YDFQAAAAAdAAAAABAE"
-  },
-  {
-    "id": 2,
-    "name": "Dây chuyền Sapphire",
-    "mainMetalWeight": "15g vàng trắng",
-    "mainGemstone": "Sapphire",
-    "sideGemstones": "Kim cương",
-    "description": "Dây chuyền vàng trắng đính đá sapphire và kim cương.",
-    "price": "$3,000",
-    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Furaloguz.com%2F%3Fe%3Dseraphinite-stone-necklace-copper-electroformed-%25E2%2580%2593-niko-nimba-gg-9MYd6QT8&psig=AOvVaw1zEQLDMeWvIJUHzFAxh8tI&ust=1716971811462000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLj5obb4r4YDFQAAAAAdAAAAABAP"
-  },
-  {
-    "id": 3,
-    "name": "Nhẫn Ruby",
-    "mainMetalWeight": "10g vàng 18K",
-    "mainGemstone": "Ruby",
-    "sideGemstones": "Kim cương",
-    "description": "Nhẫn vàng 18K đính đá ruby và kim cương.",
-    "price": "$2,500",
-    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.matthewsjewelers.com%2F5-tips-to-take-care-of-ruby-jewelry-including-a-ruby-ring-in-plantation%2F&psig=AOvVaw2M1a2OtvR9s0YcibAX1dX4&ust=1716971771996000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMDFq6H4r4YDFQAAAAAdAAAAABAE"
-  },
-  {
-    "id": 4,
-    "name": "Nhẫn Ruby",
-    "mainMetalWeight": "10g vàng 18K",
-    "mainGemstone": "Ruby",
-    "sideGemstones": "Kim cương",
-    "description": "Nhẫn vàng 18K đính đá ruby và kim cương.",
-    "price": "$2,500",
-    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.matthewsjewelers.com%2F5-tips-to-take-care-of-ruby-jewelry-including-a-ruby-ring-in-plantation%2F&psig=AOvVaw2M1a2OtvR9s0YcibAX1dX4&ust=1716971771996000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMDFq6H4r4YDFQAAAAAdAAAAABAE"
-  },
-  {
-    "id": 5,
-    "name": "Nhẫn Ruby",
-    "mainMetalWeight": "10g vàng 18K",
-    "mainGemstone": "Ruby",
-    "sideGemstones": "Kim cương",
-    "description": "Nhẫn vàng 18K đính đá ruby và kim cương.",
-    "price": "$2,500",
-    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.matthewsjewelers.com%2F5-tips-to-take-care-of-ruby-jewelry-including-a-ruby-ring-in-plantation%2F&psig=AOvVaw2M1a2OtvR9s0YcibAX1dX4&ust=1716971771996000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMDFq6H4r4YDFQAAAAAdAAAAABAE"
-  },
-  {
-    "id": 6,
-    "name": "Vòng tay ngọc lục bảo",
-    "mainMetalWeight": "20g vàng 18K",
-    "mainGemstone": "Ngọc lục bảo",
-    "sideGemstones": "Kim cương",
-    "description": "Vòng tay vàng 18K đính đá Ngọc lục bảo và kim cương.",
-    "price": "$2,500",
-    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fdaquyphongthuylnj.com%2Fnha%25CC%2582%25CC%2583n-nu%25CC%259B%25CC%2583-vang-gold-14k-da-ruby-thie%25CC%2582n-nhie%25CC%2582n-dinh-ta%25CC%2582m-kim-cu%25CC%259Bo%25CC%259Bng%2F&psig=AOvVaw3T-0FN0zwmcJBuA8olj04r&ust=1716972345353000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCIjO-bX6r4YDFQAAAAAdAAAAABAE"
-  }
-]
+{
+  "products": [
+    {
+      "id": 1,
+      "gemstone_id": 101,
+      "material_id": 201,
+      "description": "A beautiful ring with a sparkling diamond gemstone set in a gold band.",
+      "price": 499.99,
+      "name": "Diamond Gold Ring",
+      "color": "Gold",
+      "size": "6",
+      "weight": "5g"
+    },
+    {
+      "id": 2,
+      "gemstone_id": 102,
+      "material_id": 202,
+      "description": "Elegant silver necklace featuring a stunning sapphire gemstone.",
+      "price": 299.99,
+      "name": "Sapphire Silver Necklace",
+      "color": "Silver",
+      "size": "18 inches",
+      "weight": "10g"
+    },
+    {
+      "id": 3,
+      "gemstone_id": 103,
+      "material_id": 203,
+      "description": "Stylish pair of earrings with emerald gemstones set in platinum.",
+      "price": 199.99,
+      "name": "Emerald Platinum Earrings",
+      "color": "Platinum",
+      "size": "N/A",
+      "weight": "3g"
+    },
+    {
+      "id": 4,
+      "gemstone_id": 104,
+      "material_id": 204,
+      "description": "Charming bracelet with multiple ruby gemstones set in a rose gold chain.",
+      "price": 399.99,
+      "name": "Ruby Rose Gold Bracelet",
+      "color": "Rose Gold",
+      "size": "7 inches",
+      "weight": "15g"
+    },
+    {
+      "id": 5,
+      "gemstone_id": 105,
+      "material_id": 205,
+      "description": "Sophisticated men's watch with a topaz gemstone embedded in a stainless steel case.",
+      "price": 499.99,
+      "name": "Topaz Stainless Steel Watch",
+      "color": "Silver",
+      "size": "N/A",
+      "weight": "100g"
+    },
+    {
+      "id": 6,
+      "gemstone_id": 106,
+      "material_id": 206,
+      "description": "Elegant brooch with a large amethyst gemstone set in white gold.",
+      "price": 249.99,
+      "name": "Amethyst White Gold Brooch",
+      "color": "White Gold",
+      "size": "N/A",
+      "weight": "7g"
+    },
+    {
+      "id": 7,
+      "gemstone_id": 107,
+      "material_id": 207,
+      "description": "Vintage style pendant with a peridot gemstone set in sterling silver.",
+      "price": 159.99,
+      "name": "Peridot Sterling Silver Pendant",
+      "color": "Silver",
+      "size": "20 inches",
+      "weight": "5g"
+    },
+    {
+      "id": 8,
+      "gemstone_id": 108,
+      "material_id": 208,
+      "description": "Chic pair of cufflinks with black onyx gemstones set in gold.",
+      "price": 149.99,
+      "name": "Black Onyx Gold Cufflinks",
+      "color": "Gold",
+      "size": "N/A",
+      "weight": "6g"
+    },
+    {
+      "id": 9,
+      "gemstone_id": 109,
+      "material_id": 209,
+      "description": "Delicate ankle bracelet with a turquoise gemstone set in platinum.",
+      "price": 129.99,
+      "name": "Turquoise Platinum Ankle Bracelet",
+      "color": "Platinum",
+      "size": "9 inches",
+      "weight": "8g"
+    },
+    {
+      "id": 10,
+      "gemstone_id": 110,
+      "material_id": 210,
+      "description": "Gorgeous tiara with multiple aquamarine gemstones set in silver.",
+      "price": 899.99,
+      "name": "Aquamarine Silver Tiara",
+      "color": "Silver",
+      "size": "Adjustable",
+      "weight": "50g"
+    }
+  ],
+  "product_types": [
+    {
+      "productType_id": 1,
+      "name": "Rings",
+      "category_id": 301,
+      "description": "Various types of rings, including engagement and fashion rings."
+    },
+    {
+      "productType_id": 2,
+      "name": "Necklaces",
+      "category_id": 301,
+      "description": "A variety of necklaces including pendants and chains."
+    },
+    {
+      "productType_id": 3,
+      "name": "Earrings",
+      "category_id": 301,
+      "description": "Elegant earrings for all occasions."
+    },
+    {
+      "productType_id": 4,
+      "name": "Bracelets",
+      "category_id": 301,
+      "description": "Stylish bracelets including bangles and cuffs."
+    },
+    {
+      "productType_id": 5,
+      "name": "Watches",
+      "category_id": 301,
+      "description": "Luxury and casual watches for men and women."
+    },
+    {
+      "productType_id": 6,
+      "name": "Brooches",
+      "category_id": 301,
+      "description": "Decorative brooches for various styles."
+    },
+    {
+      "productType_id": 7,
+      "name": "Pendants",
+      "category_id": 301,
+      "description": "Beautiful pendants with various gemstones."
+    },
+    {
+      "productType_id": 8,
+      "name": "Cufflinks",
+      "category_id": 301,
+      "description": "Elegant cufflinks for formal attire."
+    },
+    {
+      "productType_id": 9,
+      "name": "Ankle Bracelets",
+      "category_id": 301,
+      "description": "Fashionable ankle bracelets."
+    },
+    {
+      "productType_id": 10,
+      "name": "Tiaras",
+      "category_id": 301,
+      "description": "Exquisite tiaras for special occasions."
+    }
+  ],
+  "product_categories": [
+    {
+      "categories_id": 301,
+      "category_name": "Jewelry",
+      "description": "A wide range of jewelry items including rings, necklaces, and bracelets."
+    }
+  ],
+  "gemstones": [
+    {
+      "gemstone_id": 101,
+      "name": "Diamond",
+      "weight": "1.5 carats",
+      "size": "6mm"
+    },
+    {
+      "gemstone_id": 102,
+      "name": "Sapphire",
+      "weight": "2 carats",
+      "size": "8mm"
+    },
+    {
+      "gemstone_id": 103,
+      "name": "Emerald",
+      "weight": "1 carat",
+      "size": "5mm"
+    },
+    {
+      "gemstone_id": 104,
+      "name": "Ruby",
+      "weight": "1.2 carats",
+      "size": "6mm"
+    },
+    {
+      "gemstone_id": 105,
+      "name": "Topaz",
+      "weight": "2.5 carats",
+      "size": "10mm"
+    },
+    {
+      "gemstone_id": 106,
+      "name": "Amethyst",
+      "weight": "1.8 carats",
+      "size": "7mm"
+    },
+    {
+      "gemstone_id": 107,
+      "name": "Peridot",
+      "weight": "1.5 carats",
+      "size": "6mm"
+    },
+    {
+      "gemstone_id": 108,
+      "name": "Onyx",
+      "weight": "1.1 carats",
+      "size": "5mm"
+    },
+    {
+      "gemstone_id": 109,
+      "name": "Turquoise",
+      "weight": "2 carats",
+      "size": "8mm"
+    },
+    {
+      "gemstone_id": 110,
+      "name": "Aquamarine",
+      "weight": "3 carats",
+      "size": "9mm"
+    }
+  ],
+  "materials": [
+    {
+      "material_id": 201,
+      "material_name": "Gold",
+      "size": "N/A",
+      "weight": "4.5g"
+    },
+    {
+      "material_id": 202,
+      "material_name": "Silver",
+      "size": "N/A",
+      "weight": "8g"
+    },
+    {
+      "material_id": 203,
+      "material_name": "Platinum",
+      "size": "N/A",
+      "weight": "3g"
+    },
+    {
+      "material_id": 204,
+      "material_name": "Rose Gold",
+      "size": "N/A",
+      "weight": "15g"
+    },
+    {
+      "material_id": 205,
+      "material_name": "Stainless Steel",
+      "size": "N/A",
+      "weight": "95g"
+    },
+    {
+      "material_id": 206,
+      "material_name": "White Gold",
+      "size": "N/A",
+      "weight": "6g"
+    },
+    {
+      "material_id": 207,
+      "material_name": "Sterling Silver",
+      "size": "N/A",
+      "weight": "4g"
+    },
+    {
+      "material_id": 208,
+      "material_name": "Gold",
+      "size": "N/A",
+      "weight": "6g"
+    },
+    {
+      "material_id": 209,
+      "material_name": "Platinum",
+      "size": "N/A",
+      "weight": "8g"
+    },
+    {
+      "material_id": 210,
+      "material_name": "Silver",
+      "size": "N/A",
+      "weight": "50g"
+    }
+  ]
+}

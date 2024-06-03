@@ -1,10 +1,10 @@
 import mockApiData from "../mock/Jewelry";
 
 
-export const fetchProducts = () => {
+export const FetchProducts = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(mockApiData);
+      resolve(mockApiData.products);
     }, 1000); 
   });
 };

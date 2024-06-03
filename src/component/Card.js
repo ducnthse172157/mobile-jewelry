@@ -1,6 +1,6 @@
 // components/Card.js
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { t } from 'react-native-tailwindcss';
 
 const Card = ({ children }) => {
@@ -13,7 +13,8 @@ const Card = ({ children }) => {
 
 const styles = StyleSheet.create({
   card: {
-    // Custom styles if needed
+    minHeight: '300px',
+    maxHeight: '300px',
   },
 });
 
