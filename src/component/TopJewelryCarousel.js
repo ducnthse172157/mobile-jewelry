@@ -36,8 +36,8 @@ const TopJewelryCarousel = ({list}) => {
                 <Image source={item.image} style={styles.image} />
               </View>
               <View style={styles.titleBox}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.location}>{item.location}</Text>
+                <Text style={styles.title}>{item.name}</Text>
+                <Text style={styles.name}>{item.price}</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
     marginVertical: 10,
+    border: '1px solid red',
   },
   favorite: {
     position: 'absolute',
@@ -80,9 +81,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.white,
   },
-  location: {
+  name: {
     fontSize: sizes.h3,
-    color: colors.white,
+    color: colors.black,
   },
 });
 

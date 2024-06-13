@@ -6,7 +6,7 @@ import ScreenHeader from '../component/ScreenHeader';
 import TopPlacesCarousel from '../component/TopJewelryCarousel';
 import {PLACES, TOP_PLACES} from '../data';
 import SectionHeader from '../component/SectionHeader';
-import TripsList from '../component/JewelrysList';
+import JewelrysList from '../component/JewelrysList';
 
 const HomeScreen = () => {
   return (
@@ -20,7 +20,7 @@ const HomeScreen = () => {
           buttonTitle="See All"
           onPress={() => {}}
         />
-        <TripsList list={PLACES} />
+        <JewelrysList list={PLACES} />
       </ScrollView>
     </View>
   );
@@ -29,7 +29,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.light,
+    backgroundColor: colors.lightPink,
   },
 });
 

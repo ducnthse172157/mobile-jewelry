@@ -12,8 +12,8 @@ const JewelryDetailsCard = ({trip}) => {
         delay={500}
         easing="ease-in-out"
         duration={400}>
-        <Text style={styles.title}>{trip.title}</Text>
-        <Text style={styles.location}>{trip.location}</Text>
+        <Text style={styles.title}>{trip.name}</Text>
+        <Text style={styles.location}>{trip.price}</Text>
       </Animatable.View>
     </View>
   );

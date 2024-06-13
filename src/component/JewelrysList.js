@@ -28,8 +28,8 @@ const JewelrysList = ({list}) => {
               </SharedElement>
               <View style={styles.footer}>
                 <View style={styles.titleBox}>
-                  <Text style={styles.title}>{item.title}</Text>
-                  <Text style={styles.location}>{item.location}</Text>
+                  <Text style={styles.title}>{item.name}</Text>
+                  <Text style={styles.location}>{item.price}</Text>
                 </View>
                 <FavoriteButton />
               </View>
