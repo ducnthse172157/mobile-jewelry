@@ -1,6 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import SearchScreen from '../screen/SearchScreen';
+import SubNavigator from './SubNavigator';
 import FavoriteScreen from '../screen/FavoriteScreen';
 import {colors, sizes} from '../constants/theme';
 import {StyleSheet, Animated} from 'react-native';
@@ -14,7 +14,7 @@ const tabs = [
   },
   {
     name: 'Search',
-    screen: SearchScreen,
+    screen: SubNavigator,
   },
   {
     name: 'Favorite',

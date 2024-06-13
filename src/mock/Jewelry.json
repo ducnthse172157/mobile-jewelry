@@ -2,8 +2,9 @@
   "products": [
     {
       "id": 1,
-      "gemstone_id": 101,
-      "material_id": 201,
+      "product_types": [{ "productType_id": 1 }],
+      "gemstones": [{ "gemstone_id": 101 }],
+      "materials": [{ "material_id": 201 }],
       "description": "A beautiful ring with a sparkling diamond gemstone set in a gold band.",
       "price": 499.99,
       "name": "Diamond Gold Ring",
@@ -13,8 +14,9 @@
     },
     {
       "id": 2,
-      "gemstone_id": 102,
-      "material_id": 202,
+      "product_types": [{ "productType_id": 2 }],
+      "gemstones": [{ "gemstone_id": 102 }],
+      "materials": [{ "material_id": 202 }],
       "description": "Elegant silver necklace featuring a stunning sapphire gemstone.",
       "price": 299.99,
       "name": "Sapphire Silver Necklace",
@@ -24,8 +26,9 @@
     },
     {
       "id": 3,
-      "gemstone_id": 103,
-      "material_id": 203,
+      "product_types": [{ "productType_id": 3 }],
+      "gemstones": [{ "gemstone_id": 103 }],
+      "materials": [{ "material_id": 203 }],
       "description": "Stylish pair of earrings with emerald gemstones set in platinum.",
       "price": 199.99,
       "name": "Emerald Platinum Earrings",
@@ -35,8 +38,9 @@
     },
     {
       "id": 4,
-      "gemstone_id": 104,
-      "material_id": 204,
+      "product_types": [{ "productType_id": 4 }],
+      "gemstones": [{ "gemstone_id": 104 }],
+      "materials": [{ "material_id": 204 }],
       "description": "Charming bracelet with multiple ruby gemstones set in a rose gold chain.",
       "price": 399.99,
       "name": "Ruby Rose Gold Bracelet",
@@ -46,8 +50,9 @@
     },
     {
       "id": 5,
-      "gemstone_id": 105,
-      "material_id": 205,
+      "product_types": [{ "productType_id": 5 }],
+      "gemstones": [{ "gemstone_id": 105 }],
+      "materials": [{ "material_id": 205 }],
       "description": "Sophisticated men's watch with a topaz gemstone embedded in a stainless steel case.",
       "price": 499.99,
       "name": "Topaz Stainless Steel Watch",
@@ -57,8 +62,9 @@
     },
     {
       "id": 6,
-      "gemstone_id": 106,
-      "material_id": 206,
+      "product_types": [{ "productType_id": 6 }],
+      "gemstones": [{ "gemstone_id": 106 }],
+      "materials": [{ "material_id": 206 }],
       "description": "Elegant brooch with a large amethyst gemstone set in white gold.",
       "price": 249.99,
       "name": "Amethyst White Gold Brooch",
@@ -68,8 +74,9 @@
     },
     {
       "id": 7,
-      "gemstone_id": 107,
-      "material_id": 207,
+      "product_types": [{ "productType_id": 7 }],
+      "gemstones": [{ "gemstone_id": 107 }],
+      "materials": [{ "material_id": 207 }],
       "description": "Vintage style pendant with a peridot gemstone set in sterling silver.",
       "price": 159.99,
       "name": "Peridot Sterling Silver Pendant",
@@ -79,8 +86,9 @@
     },
     {
       "id": 8,
-      "gemstone_id": 108,
-      "material_id": 208,
+      "product_types": [{ "productType_id": 8 }],
+      "gemstones": [{ "gemstone_id": 108 }],
+      "materials": [{ "material_id": 208 }],
       "description": "Chic pair of cufflinks with black onyx gemstones set in gold.",
       "price": 149.99,
       "name": "Black Onyx Gold Cufflinks",
@@ -90,8 +98,9 @@
     },
     {
       "id": 9,
-      "gemstone_id": 109,
-      "material_id": 209,
+      "product_types": [{ "productType_id": 9 }],
+      "gemstones": [{ "gemstone_id": 109 }],
+      "materials": [{ "material_id": 209 }],
       "description": "Delicate ankle bracelet with a turquoise gemstone set in platinum.",
       "price": 129.99,
       "name": "Turquoise Platinum Ankle Bracelet",
@@ -101,8 +110,9 @@
     },
     {
       "id": 10,
-      "gemstone_id": 110,
-      "material_id": 210,
+      "product_types": [{ "productType_id": 10 }],
+      "gemstones": [{ "gemstone_id": 110 }],
+      "materials": [{ "material_id": 210 }],
       "description": "Gorgeous tiara with multiple aquamarine gemstones set in silver.",
       "price": 899.99,
       "name": "Aquamarine Silver Tiara",
@@ -111,69 +121,70 @@
       "weight": "50g"
     }
   ],
+
   "product_types": [
     {
       "productType_id": 1,
       "name": "Rings",
-      "category_id": 301,
+      "categories": [{ "categories_id": 301 }],
       "description": "Various types of rings, including engagement and fashion rings."
     },
     {
       "productType_id": 2,
       "name": "Necklaces",
-      "category_id": 301,
+      "categories": [{ "categories_id": 301 }],
       "description": "A variety of necklaces including pendants and chains."
     },
     {
       "productType_id": 3,
       "name": "Earrings",
-      "category_id": 301,
+      "categories": [{ "categories_id": 301 }],
       "description": "Elegant earrings for all occasions."
     },
     {
       "productType_id": 4,
       "name": "Bracelets",
-      "category_id": 301,
+      "categories": [{ "categories_id": 301 }],
       "description": "Stylish bracelets including bangles and cuffs."
     },
     {
       "productType_id": 5,
       "name": "Watches",
-      "category_id": 301,
+      "categories": [{ "categories_id": 301 }],
       "description": "Luxury and casual watches for men and women."
     },
     {
       "productType_id": 6,
       "name": "Brooches",
-      "category_id": 301,
+      "categories": [{ "categories_id": 301 }],
       "description": "Decorative brooches for various styles."
     },
     {
       "productType_id": 7,
       "name": "Pendants",
-      "category_id": 301,
+      "categories": [{ "categories_id": 301 }],
       "description": "Beautiful pendants with various gemstones."
     },
     {
       "productType_id": 8,
       "name": "Cufflinks",
-      "category_id": 301,
+      "categories": [{ "categories_id": 301 }],
       "description": "Elegant cufflinks for formal attire."
     },
     {
       "productType_id": 9,
       "name": "Ankle Bracelets",
-      "category_id": 301,
+      "categories": [{ "categories_id": 301 }],
       "description": "Fashionable ankle bracelets."
     },
     {
       "productType_id": 10,
       "name": "Tiaras",
-      "category_id": 301,
+      "categories": [{ "categories_id": 301 }],
       "description": "Exquisite tiaras for special occasions."
     }
   ],
-  "product_categories": [
+  "categories": [
     {
       "categories_id": 301,
       "category_name": "Jewelry",

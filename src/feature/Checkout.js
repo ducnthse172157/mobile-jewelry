@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { t } from "react-native-tailwindcss";
 
 const Checkout = ({ order, navigation }) => {
   const [moneyReceived, setMoneyReceived] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [orderId, setOrderId] = useState("");
+
+  useEffect(() => {
+    const generateOrderId = () => Math.random().toString(36).substr(2, 9);
+    setOrderId(generateOrderId());
+  }, []);
 
   const totalAmount = order.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const returnAmount = (parseFloat(moneyReceived) - totalAmount).toFixed(2);
@@ -14,6 +21,12 @@ const Checkout = ({ order, navigation }) => {
     setMoneyReceived(numericValue);
   };
 
+  const resetStateAndNavigateHome = () => {
+    setMoneyReceived("");
+    setCustomerName("");
+    navigation.navigate("Home"); 
+  };
+
   return (
     <View style={[t.flex1, t.p4, t.bgWhite]}>
       <Text style={[t.text2xl, t.fontBold, t.textCenter, t.textPink700, t.mB4]}>
@@ -21,7 +34,7 @@ const Checkout = ({ order, navigation }) => {
       </Text>
       <ScrollView style={[t.mB4]}>
         <Text style={[t.textLg, t.textCenter, t.fontBold, t.mB2]}>
-          Order ID: {Math.random().toString(36).substr(2, 9)}
+          Order ID: {orderId}
         </Text>
         <View style={[t.wFull, t.borderT, t.borderGray300, t.mY2]} />
         {order.map((item, index) => (
@@ -38,6 +51,21 @@ const Checkout = ({ order, navigation }) => {
           </View>
         ))}
       </ScrollView>
+      <View style={[t.wFull, t.borderT, t.borderGray300, t.mY2]} />
+      <TextInput
+        style={[
+          t.borderB,
+          t.borderGray400,
+          t.rounded,
+          t.p2,
+          t.textPink700,
+          t.mY2,
+          t.wFull,
+        ]}
+        placeholder="Enter customer name"
+        value={customerName}
+        onChangeText={setCustomerName}
+      />
       <View style={[t.wFull, t.borderT, t.borderGray300, t.mY2]} />
       <View style={[t.flexRow, t.itemsCenter]}>
         <Text style={[t.textLg, t.fontBold]}>
@@ -66,7 +94,7 @@ const Checkout = ({ order, navigation }) => {
       </Text>
       <Pressable
         style={[t.bgPink700, t.roundedFull, t.p4, t.itemsCenter]}
-        onPress={() => navigation.goBack()}
+        onPress={resetStateAndNavigateHome}
       >
         <Text style={[t.textWhite, t.fontBold]}>Complete Transaction</Text>
       </Pressable>

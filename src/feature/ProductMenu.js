@@ -21,7 +21,7 @@ const ProductMenu = ({ products, addToOrder, navigation, increaseQuantity, decre
           <TouchableOpacity
             key={product.id}
             style={[t.w1_2, t.p1]}
-            onPress={() => navigation.navigate("InfoScreen", { product })}
+            onPress={() => navigation.navigate("Info", { product })}
           >
             <Card style={[t.bgWhite, t.roundedLg, t.shadowLg]}>
               <View style={[t.relative]}>

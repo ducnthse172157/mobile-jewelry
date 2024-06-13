@@ -13,8 +13,7 @@ const Card = ({ children }) => {
 
 const styles = StyleSheet.create({
   card: {
-    minHeight: '300px',
-    maxHeight: '300px',
+    minHeight: '320px',
   },
 });
 
