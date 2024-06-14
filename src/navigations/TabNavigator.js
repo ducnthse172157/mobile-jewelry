@@ -1,11 +1,11 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SubNavigator from './SubNavigator';
-import FavoriteScreen from '../screen/FavoriteScreen';
 import {colors, sizes} from '../constants/theme';
 import {StyleSheet, Animated} from 'react-native';
 import Icon from '../component/Icon';
 import HomeNavigator from './HomeNavigator';
+import OrderList from '../feature/OrderList';
 
 const tabs = [
   {
@@ -18,7 +18,7 @@ const tabs = [
   },
   {
     name: 'Favorite',
-    screen: FavoriteScreen,
+    screen: OrderList,
   },
 ];
 

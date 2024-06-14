@@ -1,6 +1,8 @@
+// Checkout.js
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { t } from "react-native-tailwindcss";
+import { updateOrders } from "../service/Product";
 
 const Checkout = ({ order, navigation }) => {
   const [moneyReceived, setMoneyReceived] = useState("");
@@ -16,16 +18,27 @@ const Checkout = ({ order, navigation }) => {
   const returnAmount = (parseFloat(moneyReceived) - totalAmount).toFixed(2);
 
   const handleMoneyReceivedChange = (value) => {
-    // Ensure only numeric input is accepted
     const numericValue = value.replace(/[^0-9.]/g, '');
     setMoneyReceived(numericValue);
   };
 
   const resetStateAndNavigateHome = () => {
+    const newOrder = {
+      orderId,
+      customerName,
+      items: order,
+      totalAmount,
+      moneyReceived: parseFloat(moneyReceived),
+      returnAmount: parseFloat(returnAmount)
+    };
+
+    updateOrders(newOrder); 
+
     setMoneyReceived("");
     setCustomerName("");
-    navigation.navigate("Home"); 
+    navigation.navigate("Home");
   };
+
 
   return (
     <View style={[t.flex1, t.p4, t.bgWhite]}>
@@ -40,6 +53,7 @@ const Checkout = ({ order, navigation }) => {
         {order.map((item, index) => (
           <View key={index} style={[t.mY2]}>
             <Text style={[t.textBase, t.fontBold]}>{item.name}</Text>
+            <Text style={[t.textBase, t.fontBold]}>{item.id}</Text>
             <View style={[t.flexRow, t.justifyBetween]}>
               <Text style={[t.textBase]}>
                 ${item.price} x {item.quantity}
@@ -103,3 +117,4 @@ const Checkout = ({ order, navigation }) => {
 };
 
 export default Checkout;
+

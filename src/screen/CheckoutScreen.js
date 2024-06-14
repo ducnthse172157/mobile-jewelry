@@ -3,7 +3,6 @@ import { View } from "react-native";
 import { t } from "react-native-tailwindcss";
 import Checkout from "../feature/Checkout";
 
-
 const CheckoutScreen = ({ route, navigation }) => {
   const { order } = route.params;
 
