@@ -5,8 +5,9 @@ import {colors, sizes} from '../constants/theme';
 import {StyleSheet, Animated} from 'react-native';
 import Icon from '../component/Icon';
 import HomeNavigator from './HomeNavigator';
-import OrderList from '../feature/OrderList';
+import OrderScreen from '../screen/OrderScreen';
 import { OrderProvider } from '../context/OrderContext';
+
 
 const tabs = [
   {
@@ -19,7 +20,7 @@ const tabs = [
   },
   {
     name: 'Favorite',
-    screen: OrderList,
+    screen: OrderScreen,
   },
 ];
 

@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { View, ScrollView } from "react-native";
+import { t } from "react-native-tailwindcss";
 import ProductMenu from "../feature/ProductMenu";
 import OrderReceipt from "../feature/OrderReceipt";
 import SlideUpView from "../component/Slideup";
-import { t } from "react-native-tailwindcss";
 import { FetchProducts } from "../service/Product";
+import LoadingAnimation from "../component/Loading";
 
-const SearchScreen = ({navigation}) => {
+const SearchScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    FetchProducts().then(data => setProducts(data));
-  }, []);
+    FetchProducts().then((data) => {
+      setProducts(data);
+      setLoading(false);
+    }).catch((error) => {
+      console.error(error);
+      setLoading(false);
+    });
+}, []);
 
   const addToOrder = (product) => {
     const existingProduct = order.find((item) => item.id === product.id);
@@ -39,13 +47,19 @@ const SearchScreen = ({navigation}) => {
 
   const decreaseQuantity = (productId) => {
     setOrder(
-      order.map((item) =>
-        item.id === productId
-          ? { ...item, quantity: Math.max(item.quantity - 1, 0) }
-          : item
-      ).filter(item => item.quantity > 0)
+      order
+        .map((item) =>
+          item.id === productId
+            ? { ...item, quantity: Math.max(item.quantity - 1, 0) }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
     );
   };
+
+  if (loading) {
+    return <LoadingAnimation />;
+  }
 
   return (
     <View style={[t.flex1]}>
@@ -60,10 +74,7 @@ const SearchScreen = ({navigation}) => {
         />
       </ScrollView>
       <SlideUpView visible={order.length > 0}>
-        <OrderReceipt
-          order={order}
-          navigation={navigation}
-        />
+        <OrderReceipt order={order} navigation={navigation} />
       </SlideUpView>
     </View>
   );

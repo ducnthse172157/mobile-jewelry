@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { t } from "react-native-tailwindcss";
-import { updateOrders } from "../service/Product";
+import { updateOrders } from "../service/Order";
 import { useOrders } from '../context/OrderContext';
 
 const Checkout = ({ order, navigation }) => {

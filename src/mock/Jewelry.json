@@ -2,6 +2,7 @@
   "products": [
     {
       "id": 1,
+      "image": "../../assets/images/O-Nhan-Kim-Cuong-Dai-Hoa-WOW1-scaled-1-scaled.jpg",
       "product_types": [{ "productType_id": 1 }],
       "gemstones": [{ "gemstone_id": 101 }],
       "materials": [{ "material_id": 201 }],
@@ -14,6 +15,7 @@
     },
     {
       "id": 2,
+      "image": "../../assets/images/O-Nhan-Kim-Cuong-Dai-Hoa-WOW1-scaled-1-scaled.jpg",
       "product_types": [{ "productType_id": 2 }],
       "gemstones": [{ "gemstone_id": 102 }],
       "materials": [{ "material_id": 202 }],
@@ -26,6 +28,7 @@
     },
     {
       "id": 3,
+      "image": "../../assets/images/O-Nhan-Kim-Cuong-Dai-Hoa-WOW1-scaled-1-scaled.jpg",
       "product_types": [{ "productType_id": 3 }],
       "gemstones": [{ "gemstone_id": 103 }],
       "materials": [{ "material_id": 203 }],
@@ -38,6 +41,7 @@
     },
     {
       "id": 4,
+      "image": "../../assets/images/O-Nhan-Kim-Cuong-Dai-Hoa-WOW1-scaled-1-scaled.jpg",
       "product_types": [{ "productType_id": 4 }],
       "gemstones": [{ "gemstone_id": 104 }],
       "materials": [{ "material_id": 204 }],
@@ -50,6 +54,7 @@
     },
     {
       "id": 5,
+      "image": "../../assets/images/O-Nhan-Kim-Cuong-Dai-Hoa-WOW1-scaled-1-scaled.jpg",
       "product_types": [{ "productType_id": 5 }],
       "gemstones": [{ "gemstone_id": 105 }],
       "materials": [{ "material_id": 205 }],
@@ -62,6 +67,7 @@
     },
     {
       "id": 6,
+      "image": "../../assets/images/O-Nhan-Kim-Cuong-Dai-Hoa-WOW1-scaled-1-scaled.jpg",
       "product_types": [{ "productType_id": 6 }],
       "gemstones": [{ "gemstone_id": 106 }],
       "materials": [{ "material_id": 206 }],
@@ -74,6 +80,7 @@
     },
     {
       "id": 7,
+      "image": "../../assets/images/O-Nhan-Kim-Cuong-Dai-Hoa-WOW1-scaled-1-scaled.jpg",
       "product_types": [{ "productType_id": 7 }],
       "gemstones": [{ "gemstone_id": 107 }],
       "materials": [{ "material_id": 207 }],
@@ -86,6 +93,7 @@
     },
     {
       "id": 8,
+      "image": "../../assets/images/O-Nhan-Kim-Cuong-Dai-Hoa-WOW1-scaled-1-scaled.jpg",
       "product_types": [{ "productType_id": 8 }],
       "gemstones": [{ "gemstone_id": 108 }],
       "materials": [{ "material_id": 208 }],
@@ -98,6 +106,7 @@
     },
     {
       "id": 9,
+      "image": "../../assets/images/O-Nhan-Kim-Cuong-Dai-Hoa-WOW1-scaled-1-scaled.jpg",
       "product_types": [{ "productType_id": 9 }],
       "gemstones": [{ "gemstone_id": 109 }],
       "materials": [{ "material_id": 209 }],
@@ -110,6 +119,7 @@
     },
     {
       "id": 10,
+      "image": "../../assets/images/O-Nhan-Kim-Cuong-Dai-Hoa-WOW1-scaled-1-scaled.jpg",
       "product_types": [{ "productType_id": 10 }],
       "gemstones": [{ "gemstone_id": 110 }],
       "materials": [{ "material_id": 210 }],
