@@ -6,6 +6,7 @@ import {StyleSheet, Animated} from 'react-native';
 import Icon from '../component/Icon';
 import HomeNavigator from './HomeNavigator';
 import OrderList from '../feature/OrderList';
+import { OrderProvider } from '../context/OrderContext';
 
 const tabs = [
   {
@@ -28,6 +29,7 @@ const TabNavigator = () => {
   const offsetAnimation = React.useRef(new Animated.Value(0)).current;
   return (
     <>
+    <OrderProvider>
       <Tab.Navigator
         initialRouteName="Home"
         screenOptions={{
@@ -65,6 +67,7 @@ const TabNavigator = () => {
           );
         })}
       </Tab.Navigator>
+      </OrderProvider>
       <Animated.View
         style={[
           styles.indicator,

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { t } from "react-native-tailwindcss";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const OrderReceipt = ({ order, navigation }) => {
   const getTotalPrice = () => {
@@ -33,11 +34,11 @@ const OrderReceipt = ({ order, navigation }) => {
         t.shadowLg,
       ]}
     >
-      <Text style={[t.textWhite, t.textLg]}>
+      <Text style={[{ fontSize: RFValue(14) }, t.textWhite]}>
         Total Items: {getTotalQuantity()}
       </Text>
-      <Text style={[t.textWhite, t.textXl, t.fontBold]}>
-       ${getTotalPrice()}
+      <Text style={[{ fontSize: RFValue(14) }, t.textWhite, t.fontBold]}>
+        ${getTotalPrice()}
       </Text>
       <TouchableOpacity
         style={[
@@ -49,7 +50,9 @@ const OrderReceipt = ({ order, navigation }) => {
         ]}
         onPress={handleCheckout}
       >
-        <Text style={[t.textPink700, t.fontBold]}>Checkout</Text>
+        <Text style={[{ fontSize: RFValue(16) }, t.textPink700, t.fontBold]}>
+          Checkout
+        </Text>
       </TouchableOpacity>
     </View>
   );

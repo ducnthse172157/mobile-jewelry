@@ -1,13 +1,14 @@
-// Checkout.js
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { updateOrders } from "../service/Product";
+import { useOrders } from '../context/OrderContext';
 
 const Checkout = ({ order, navigation }) => {
   const [moneyReceived, setMoneyReceived] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [orderId, setOrderId] = useState("");
+  const { refreshOrders } = useOrders();
 
   useEffect(() => {
     const generateOrderId = () => Math.random().toString(36).substr(2, 9);
@@ -22,7 +23,7 @@ const Checkout = ({ order, navigation }) => {
     setMoneyReceived(numericValue);
   };
 
-  const resetStateAndNavigateHome = () => {
+  const resetStateAndNavigateHome = async () => {
     const newOrder = {
       orderId,
       customerName,
@@ -32,13 +33,13 @@ const Checkout = ({ order, navigation }) => {
       returnAmount: parseFloat(returnAmount)
     };
 
-    updateOrders(newOrder); 
+    updateOrders(newOrder);
+    await refreshOrders(); // Refresh the orders after adding a new order
 
     setMoneyReceived("");
     setCustomerName("");
     navigation.navigate("Home");
   };
-
 
   return (
     <View style={[t.flex1, t.p4, t.bgWhite]}>
@@ -117,4 +118,3 @@ const Checkout = ({ order, navigation }) => {
 };
 
 export default Checkout;
-

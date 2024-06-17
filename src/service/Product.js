@@ -51,3 +51,19 @@ export const fetchOrders = () => {
     }, 1000);
   });
 };
+
+// New deleteOrder function
+export const deleteOrder = (orderId) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const index = orders.findIndex(order => order.orderId === orderId);
+      if (index !== -1) {
+        orders.splice(index, 1);
+        console.log('Deleted order:', orderId);
+        resolve(orders);
+      } else {
+        reject(new Error('Order not found'));
+      }
+    }, 1000);
+  });
+};
