@@ -11,6 +11,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
     "@expo/metro-runtime": "~3.2.1",
+    "@react-native-picker/picker": "^2.7.7",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/drawer": "^6.6.15",
     "@react-navigation/native": "^6.1.17",
@@ -19,6 +20,8 @@
     "expo": "~51.0.8",
     "expo-status-bar": "~1.12.1",
     "fast-json-stable-stringify": "^2.1.0",
+    "formik": "^2.4.6",
+    "lodash-es": "^4.17.21",
     "materialize-css": "^1.0.0",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
@@ -38,7 +41,8 @@
     "react-navigation-shared-element": "^3.1.3",
     "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
-    "tailwind-rn": "^4.2.0"
+    "tailwind-rn": "^4.2.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

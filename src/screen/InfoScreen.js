@@ -10,8 +10,7 @@ const InfoScreen = ({ route}) => {
 
   return (
     <View style={[t.flex1, t.bgWhite]}>
-      <ScrollView contentContainerStyle={[t.p6]}>
-        <Text style={[t.text2xl, t.textCenter, t.fontBold, t.textPink700, t.mB5]}>{product.name}</Text>
+      <ScrollView>
         <JewelryInfo product={product} />
       </ScrollView>
     </View>

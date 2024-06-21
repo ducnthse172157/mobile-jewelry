@@ -8,10 +8,10 @@ const OrderReceipt = ({ order, navigation }) => {
     return order
       .reduce(
         (sum, item) =>
-          sum + parseFloat(item.price) * item.quantity,
+          sum + parseInt(item.price) * item.quantity,
         0
       )
-      .toFixed(2);
+      .toFixed(0);
   };
 
   const getTotalQuantity = () => {
@@ -38,7 +38,7 @@ const OrderReceipt = ({ order, navigation }) => {
         Total Items: {getTotalQuantity()}
       </Text>
       <Text style={[{ fontSize: RFValue(14) }, t.textWhite, t.fontBold]}>
-        ${getTotalPrice()}
+        {getTotalPrice()} vnd
       </Text>
       <Pressable
         style={[

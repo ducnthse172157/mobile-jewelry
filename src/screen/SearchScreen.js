@@ -13,21 +13,23 @@ const SearchScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    FetchProducts().then((data) => {
-      setProducts(data);
-      setLoading(false);
-    }).catch((error) => {
-      console.error(error);
-      setLoading(false);
-    });
-}, []);
+    FetchProducts()
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, []);
 
   const addToOrder = (product) => {
-    const existingProduct = order.find((item) => item.id === product.id);
+    const existingProduct = order.find((item) => item._id === product._id);
     if (existingProduct) {
       setOrder(
         order.map((item) =>
-          item.id === product.id
+          item._id === product._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
@@ -40,7 +42,7 @@ const SearchScreen = ({ navigation }) => {
   const increaseQuantity = (productId) => {
     setOrder(
       order.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+        item._id === productId ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
@@ -49,7 +51,7 @@ const SearchScreen = ({ navigation }) => {
     setOrder(
       order
         .map((item) =>
-          item.id === productId
+          item._id === productId
             ? { ...item, quantity: Math.max(item.quantity - 1, 0) }
             : item
         )
@@ -63,7 +65,10 @@ const SearchScreen = ({ navigation }) => {
 
   return (
     <View style={[t.flex1]}>
-      <ScrollView style={[t.flex1, t.absolute, t.wFull, t.hFull, t.p4, t.pB20]}>
+      <ScrollView
+        style={[t.flex1, t.absolute, t.wFull, t.hFull, t.p4, t.pB20]}
+        showsVerticalScrollIndicator={false}
+      >
         <ProductMenu
           products={products}
           addToOrder={addToOrder}

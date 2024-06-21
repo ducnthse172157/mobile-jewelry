@@ -1,5 +1,5 @@
 
-import orders from "../mock/order"; // Your fake API data
+import orders from "../mock/Order"; // Your fake API data
 
 export const updateOrders = (newOrder) => {
     // Ensure orders is an array

@@ -14,7 +14,7 @@ const MainNavigator = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setSplashVisible(false);
-    }, 6000); // Adjust the duration as needed
+    }, 6000);
 
     return () => clearTimeout(timer);
   }, []);

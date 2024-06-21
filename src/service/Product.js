@@ -1,35 +1,29 @@
-// product.js
-import mockApiData from "../mock/Jewelry";
-
+// Define the FetchProducts function to get the product data from the API
 export const FetchProducts = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // Merge product data with gemstone and material names
-      const productsWithDetails = mockApiData.products.map(product => {
-        const type = product.product_types.map(type => {
-          const foundType = mockApiData.product_types.find(gem => gem.productType_id === type.productType_id);
-          return foundType ? foundType.name : "Unknown Type";
+  return new Promise((resolve, reject) => {
+    fetch("https://baitapdeploy-production.up.railway.app/products")
+      .then(response => response.json())
+      .then(data => {
+        const productsWithDetails = data.products.map(product => {
+          const type = product.productTypeID ? product.productTypeID.name : "Unknown Type";
+          const gemstone = product.gemstoneID ? product.gemstoneID.name : "Unknown Gemstone";
+          const material = product.materialID ? product.materialID.name : "Unknown Material";
+          const images = product.imageIDs.map(img => img.imageLink);
+
+          return {
+            ...product,
+            type,
+            gemstone,
+            material,
+            images,
+          };
         });
 
-        const gemstones = product.gemstones.map(gemstone => {
-          const foundGemstone = mockApiData.gemstones.find(gem => gem.gemstone_id === gemstone.gemstone_id);
-          return foundGemstone ? foundGemstone.name : "Unknown Gemstone";
-        });
-
-        const materials = product.materials.map(material => {
-          const foundMaterial = mockApiData.materials.find(mat => mat.material_id === material.material_id);
-          return foundMaterial ? foundMaterial.material_name : "Unknown Material";
-        });
-
-        return {
-          ...product,
-          type,
-          gemstones,
-          materials
-        };
+        resolve(productsWithDetails);
+      })
+      .catch(error => {
+        console.error("Error fetching products:", error);
+        reject(error);
       });
-
-      resolve(productsWithDetails);
-    }, 1000);
   });
 };
