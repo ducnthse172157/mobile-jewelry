@@ -12,15 +12,14 @@ const Pagination = ({ currentPage, totalPages, onNextPage, onPreviousPage, onPag
           key={i}
           onPress={() => onPageChange(i)}
           style={[
+            t.fontMedium,
             t.pX2,
             t.pY1,
             t.roundedFull,
-            t.mX2,  // Add horizontal margin
-            i === currentPage ? t.bgPink700 : t.bgWhite,
-            i === currentPage ? t.textWhite : t.textGray900,
+            t.mX2, 
           ]}
         >
-          <Text style={i === currentPage ? t.textWhite : t.textGray900}>
+          <Text style={[t.fontBold, i === currentPage ? t.textPink700 : t.textGray900]}>
             {i}
           </Text>
         </Pressable>

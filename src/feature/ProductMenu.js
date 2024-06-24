@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, Alert } from "react-native";
+import { Picker } from '@react-native-picker/picker';
 import { t } from "react-native-tailwindcss";
 import Card from "../component/Card";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -12,6 +13,7 @@ const ProductMenu = ({
   increaseQuantity,
   decreaseQuantity,
   order,
+  resetOrder,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(3);
@@ -35,16 +37,53 @@ const ProductMenu = ({
     }
   };
 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handleReset = () => {
+          resetOrder();
+  };
+
   const paginatedProducts = products.slice(
     (currentPage - 1) * productsPerPage,
     currentPage * productsPerPage
   );
 
   return (
-    <View>
+    <View style={[t.mB20]}>
       <Text style={[t.text2xl, t.textCenter, t.fontBold, t.textPink700, t.mB4]}>
         Product Menu
       </Text>
+      <View style={[t.flexRow, t.justifyBetween, t.mB4]}>
+        <View style={[t.flexRow, t.justifyBetween, t.itemsCenter, t.border, t.roundedFull, t.w1_3, t.h8]}>
+          <Picker
+            selectedValue={productsPerPage}
+            style={[t.wFull, t.hFull]}
+            onValueChange={(itemValue) => {
+              setProductsPerPage(itemValue);
+              setCurrentPage(1); 
+            }}
+          >
+            <Picker.Item label="3" value={3} />
+            <Picker.Item label="5" value={5} />
+            <Picker.Item label="10" value={10} />
+          </Picker>
+        </View>
+        <Pressable
+          style={[
+            t.bgPink700,
+            t.pY3,
+            t.pX4,
+            t.roundedFull,
+            t.itemsCenter,
+            t.justifyCenter,
+          ]}
+          onPress={handleReset}
+        >
+          <Icon name="refresh" size={12} color="white" />
+        </Pressable>
+      </View>
       <View style={[t.flex, t.flexWrap, t.flexRow, t.justifyBetween]}>
         {paginatedProducts.map((product) => (
           <Pressable
@@ -62,7 +101,7 @@ const ProductMenu = ({
                   <Text style={[t.textGray900]}>{product._id}</Text>
                   <Text style={[t.textGray900]}>{product.name}</Text>
                   <Text style={[t.textBase, t.fontBold, t.textGray700, t.mT1]}>
-                    {product.price} vnd
+                    {product.price} &#x20AB;
                   </Text>
                 </View>
                 {getOrderQuantity(product._id) === 0 ? (
@@ -100,7 +139,7 @@ const ProductMenu = ({
                     ]}
                   >
                     <Pressable
-                      style={[t.bgPink700, t.pX2, t.pY1, t.roundedFull]}
+                      style={[t.bgPink700, t.p2, t.roundedFull, t.w8, t.h8]}
                       onPress={() => decreaseQuantity(product._id)}
                     >
                       <Icon name="minus" size={12} color="white" />
@@ -109,7 +148,7 @@ const ProductMenu = ({
                       {getOrderQuantity(product._id)}
                     </Text>
                     <Pressable
-                      style={[t.bgPink700, t.pX2, t.pY1, t.roundedFull]}
+                      style={[t.bgPink700, t.p2, t.roundedFull, t.w8, t.h8]}
                       onPress={() => increaseQuantity(product._id)}
                     >
                       <Icon name="plus" size={12} color="white" />
@@ -126,6 +165,7 @@ const ProductMenu = ({
         totalPages={totalPages}
         onNextPage={handleNextPage}
         onPreviousPage={handlePreviousPage}
+        onPageChange={handlePageChange}
       />
     </View>
   );

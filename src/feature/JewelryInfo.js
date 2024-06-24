@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, Pressable, StyleSheet } from "react-native";
+import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import { t } from "react-native-tailwindcss";
 import DetailAnimation from "../component/DetailAnimation";
-import { sizes } from "../constants/theme";
 
 const JewelryInfo = ({ product }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -54,12 +53,12 @@ const JewelryInfo = ({ product }) => {
         ))}
       </View>
       <DetailAnimation>
-        <View>
+        <View style={[t.bgPink100, t.p4 , t.roundedBeFull]}>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
-            <Text style={[t.fontBold]}>{product.name}</Text> 
+            <Text style={[t.textXl, t.fontBold]}>{product.name}</Text> 
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
-            <Text>{product.price}</Text> vnd
+          <Text style={[t.fontBold]}>Price:</Text> {product.price}&#x20AB;
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
             <Text style={[t.fontBold]}>Type:</Text> {product.type}

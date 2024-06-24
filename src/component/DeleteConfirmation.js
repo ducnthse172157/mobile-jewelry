@@ -5,8 +5,8 @@ import { t } from "react-native-tailwindcss";
 
 const DeleteConfirmation = ({ isVisible, onClose, onConfirm, orderId }) => {
   return (
-    <Popup isVisible={isVisible} onClose={onClose} title="Confirm Deletion">
-      <Text>Delete order <Text style={[t.fontBold]}>{orderId}?</Text></Text>
+    <Popup isVisible={isVisible} onClose={onClose} title="Delete Order">
+      <Text style={[t.textCenter]}>Are you sure you want to delete order <Text style={[t.fontBold, t.textPink700]}>{orderId}</Text>?</Text>
       <View style={[t.flexRow, t.mT5, t.mXAuto]}>
         <Pressable onPress={onConfirm} style={[t.bgPink700, t.pX4, t.pY2, t.rounded, t.mR2]}>
           <Text style={[t.textWhite, t.textLg]}>Yes</Text>

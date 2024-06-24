@@ -38,10 +38,11 @@ const OrderReceipt = ({ order, navigation }) => {
         Total Items: {getTotalQuantity()}
       </Text>
       <Text style={[{ fontSize: RFValue(14) }, t.textWhite, t.fontBold]}>
-        {getTotalPrice()} vnd
+        {getTotalPrice()}&#x20AB;
       </Text>
       <Pressable
         style={[
+          t.mL1,
           t.bgWhite,
           t.pX4,
           t.pY2,
@@ -50,7 +51,7 @@ const OrderReceipt = ({ order, navigation }) => {
         ]}
         onPress={handleCheckout}
       >
-        <Text style={[{ fontSize: RFValue(16) }, t.textPink700, t.fontBold]}>
+        <Text style={[{ fontSize: RFValue(10) }, t.textPink700, t.fontBold]}>
           Checkout
         </Text>
       </Pressable>

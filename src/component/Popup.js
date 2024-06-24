@@ -19,7 +19,7 @@ const Popup = ({ isVisible, onClose, title, children }) => {
           >
             <MaterialIcons name="close" size={24} color="black" />
           </Pressable>
-          <Text style={[t.textXl, t.fontBold, t.mB4]}>{title}</Text>
+          <Text style={[t.textXl, t.fontBold, t.mB4, t.textPink700]}>{title}</Text>
           <View style={[t.mB5]}>{children}</View>
         </View>
       </View>

@@ -58,6 +58,9 @@ const SearchScreen = ({ navigation }) => {
         .filter((item) => item.quantity > 0)
     );
   };
+  const resetOrder = () => {
+    setOrder([]);
+  };
 
   if (loading) {
     return <LoadingAnimation />;
@@ -75,6 +78,7 @@ const SearchScreen = ({ navigation }) => {
           increaseQuantity={increaseQuantity}
           decreaseQuantity={decreaseQuantity}
           order={order}
+          resetOrder={resetOrder}
           navigation={navigation}
         />
       </ScrollView>
