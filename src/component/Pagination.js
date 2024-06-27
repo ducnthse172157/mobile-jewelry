@@ -35,7 +35,7 @@ const Pagination = ({ currentPage, totalPages, onNextPage, onPreviousPage, onPag
         onPress={onPreviousPage}
         disabled={currentPage === 1}
       >
-        <Icon name="angle-double-left" size={24} color={currentPage === 1 ? "gray" : "black"} />
+        <Icon name="angle-double-left" size={24} color={currentPage === 1 ? "#ddd" : "black"} />
       </Pressable>
       <View style={[t.flexRow, t.itemsCenter]}>
         {renderPageNumbers()}
@@ -45,7 +45,7 @@ const Pagination = ({ currentPage, totalPages, onNextPage, onPreviousPage, onPag
         onPress={onNextPage}
         disabled={currentPage === totalPages}
       >
-        <Icon name="angle-double-right" size={24} color={currentPage === totalPages ? "gray" : "black"} />
+        <Icon name="angle-double-right" size={24} color={currentPage === totalPages ? "#ddd" : "black"} />
       </Pressable>
     </View>
   );

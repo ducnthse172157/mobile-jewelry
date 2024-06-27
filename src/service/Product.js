@@ -1,29 +1,24 @@
-// Define the FetchProducts function to get the product data from the API
-export const FetchProducts = () => {
-  return new Promise((resolve, reject) => {
-    fetch("https://baitapdeploy-production.up.railway.app/products")
-      .then(response => response.json())
-      .then(data => {
-        const productsWithDetails = data.products.map(product => {
-          const type = product.productTypeID ? product.productTypeID.name : "Unknown Type";
-          const gemstone = product.gemstoneID ? product.gemstoneID.name : "Unknown Gemstone";
-          const material = product.materialID ? product.materialID.name : "Unknown Material";
-          const images = product.imageIDs.map(img => img.imageLink);
+// service/Product.js
+import axios from 'axios';
 
-          return {
-            ...product,
-            type,
-            gemstone,
-            material,
-            images,
-          };
-        });
+const API_BASE_URL = 'https://baitapdeploy-production.up.railway.app/products';
 
-        resolve(productsWithDetails);
-      })
-      .catch(error => {
-        console.error("Error fetching products:", error);
-        reject(error);
-      });
-  });
+export const FetchProducts = async () => {
+  try {
+    const response = await axios.get(API_BASE_URL);
+    return response.data.products;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw error;
+  }
+};
+
+export const FetchProductById = async (id) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/${id}`);
+    return response.data.product;
+  } catch (error) {
+    console.error('Error fetching product by ID:', error);
+    throw error;
+  }
 };

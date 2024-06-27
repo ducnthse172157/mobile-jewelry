@@ -1,3 +1,4 @@
+// screens/SearchScreen.js
 import React, { useState, useEffect } from "react";
 import { View, ScrollView } from "react-native";
 import { t } from "react-native-tailwindcss";
@@ -58,6 +59,7 @@ const SearchScreen = ({ navigation }) => {
         .filter((item) => item.quantity > 0)
     );
   };
+
   const resetOrder = () => {
     setOrder([]);
   };

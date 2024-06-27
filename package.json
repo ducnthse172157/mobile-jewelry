@@ -17,6 +17,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.29",
     "antd": "^5.17.3",
+    "axios": "^1.7.2",
     "expo": "~51.0.8",
     "expo-status-bar": "~1.12.1",
     "fast-json-stable-stringify": "^2.1.0",

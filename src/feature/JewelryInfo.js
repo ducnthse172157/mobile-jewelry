@@ -1,20 +1,21 @@
+// feature/JewelryInfo.js
 import React, { useState } from "react";
 import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import { t } from "react-native-tailwindcss";
 import DetailAnimation from "../component/DetailAnimation";
 
-const JewelryInfo = ({ product }) => {
+const JewelryInfo = ({ product, material, productType, gemstone }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePreviousImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? product.images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? product.imageIDs.length - 1 : prevIndex - 1
     );
   };
 
   const handleNextImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === product.imageIDs.length - 1 ? 0 : prevIndex + 1
     );
   };
 
@@ -25,7 +26,7 @@ const JewelryInfo = ({ product }) => {
           <Text style={[t.text4xl, t.fontBold, t.textPink700, t.mR3]}>&lt;</Text>
         </Pressable>
         <Image
-          source={{ uri: product.images[currentImageIndex] }}
+          source={{ uri: product.imageIDs[currentImageIndex].imageLink }}
           style={[styles.Image, t.roundedTLg, t.mB2, t.shadow2xl]}
         />
         <Pressable onPress={handleNextImage}>
@@ -33,10 +34,10 @@ const JewelryInfo = ({ product }) => {
         </Pressable>
       </View>
       <View style={[t.flexRow, t.mT3, t.top0, t.left0]}>
-        {product.images.map((image, index) => (
+        {product.imageIDs.map((image, index) => (
           <View key={index} style={[t.p1]}>
             <Image
-              source={{ uri: image }}
+              source={{ uri: image.imageLink }}
               style={[
                 t.w20,
                 t.h20,
@@ -53,25 +54,24 @@ const JewelryInfo = ({ product }) => {
         ))}
       </View>
       <DetailAnimation>
-        <View style={[t.bgPink100, t.p4 , t.roundedBeFull]}>
+        <View style={[t.bgPink100, t.p4, t.roundedBeFull]}>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
-            <Text style={[t.textXl, t.fontBold]}>{product.name}</Text> 
+            <Text style={[t.textXl, t.fontBold]}>{product.name}</Text>
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
-          <Text style={[t.fontBold]}>Price:</Text> {product.price}&#x20AB;
+            <Text style={[t.fontBold]}>Price:</Text> {product.price}&#x20AB;
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
-            <Text style={[t.fontBold]}>Type:</Text> {product.type}
+            <Text style={[t.fontBold]}>Type:</Text> {productType?.name}
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
             <Text style={[t.fontBold]}>Description:</Text> {product.description}
           </Text>
-          
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
-            <Text style={[t.fontBold]}>Gemstones:</Text> {product.gemstone}
+            <Text style={[t.fontBold]}>Gemstones:</Text> {gemstone?.name}
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
-            <Text style={[t.fontBold]}>Materials:</Text> {product.material}
+            <Text style={[t.fontBold]}>Materials:</Text> {material?.name}
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
             <Text style={[t.fontBold]}>Weight:</Text> {product.weight}
@@ -95,4 +95,5 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
 });
+
 export default JewelryInfo;

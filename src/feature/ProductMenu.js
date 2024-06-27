@@ -1,5 +1,6 @@
+// feature/ProductMenu.js
 import React, { useState } from "react";
-import { View, Text, Image, Pressable, Alert } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import { t } from "react-native-tailwindcss";
 import Card from "../component/Card";
@@ -42,7 +43,7 @@ const ProductMenu = ({
   };
 
   const handleReset = () => {
-          resetOrder();
+    resetOrder();
   };
 
   const paginatedProducts = products.slice(
@@ -87,18 +88,17 @@ const ProductMenu = ({
       <View style={[t.flex, t.flexWrap, t.flexRow, t.justifyBetween]}>
         {paginatedProducts.map((product) => (
           <Pressable
-            key={product._id}
-            style={[t.w1_2, t.p1]}
-            onPress={() => navigation.navigate("Info", { product })}
+          key={product._id}
+          style={[t.w1_2, t.p1]}
+          onPress={() => navigation.navigate("Info", { productId: product._id })}
           >
             <Card style={[t.bgWhite, t.roundedLg, t.shadowLg]}>
               <View style={[t.relative]}>
                 <Image
-                  source={{ uri: product.images[0] }}
+                  source={{ uri: product.imageIDs[0].imageLink }}
                   style={[t.wFull, t.h40, t.roundedTLg]}
                 />
                 <View style={[t.p1]}>
-                  <Text style={[t.textGray900]}>{product._id}</Text>
                   <Text style={[t.textGray900]}>{product.name}</Text>
                   <Text style={[t.textBase, t.fontBold, t.textGray700, t.mT1]}>
                     {product.price} &#x20AB;
@@ -163,9 +163,9 @@ const ProductMenu = ({
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onNextPage={handleNextPage}
-        onPreviousPage={handlePreviousPage}
-        onPageChange={handlePageChange}
+        handleNextPage={handleNextPage}
+        handlePreviousPage={handlePreviousPage}
+        handlePageChange={handlePageChange}
       />
     </View>
   );

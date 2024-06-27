@@ -1,25 +1,25 @@
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import SubNavigator from './SubNavigator';
-import {colors, sizes} from '../constants/theme';
-import {StyleSheet, Animated} from 'react-native';
-import Icon from '../component/Icon';
-import HomeNavigator from './HomeNavigator';
-import OrderScreen from '../screen/OrderScreen';
-import { OrderProvider } from '../context/OrderContext';
-
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import SubNavigator from "./SubNavigator";
+import { colors, sizes } from "../constants/theme";
+import { StyleSheet, Animated } from "react-native";
+import Icon from "../component/Icon";
+import HomeNavigator from "./HomeNavigator";
+import OrderScreen from "../screen/OrderScreen";
+import { ToastProvider } from "../component/Toast";
+import { OrderProvider } from "../context/OrderContext";
 
 const tabs = [
   {
-    name: 'Home',
+    name: "Home",
     screen: HomeNavigator,
   },
   {
-    name: 'Search',
+    name: "Search",
     screen: SubNavigator,
   },
   {
-    name: 'Favorite',
+    name: "Favorite",
     screen: OrderScreen,
   },
 ];
@@ -30,44 +30,47 @@ const TabNavigator = () => {
   const offsetAnimation = React.useRef(new Animated.Value(0)).current;
   return (
     <>
-    <OrderProvider>
-      <Tab.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerShown: false,
-          tabBarShowLabel: false,
-        }}>
-        {tabs.map(({name, screen}, index) => {
-          return (
-            <Tab.Screen
-              key={name}
-              name={name}
-              component={screen}
-              options={{
-                tabBarIcon: ({focused}) => {
-                  return (
-                    <Icon
-                      icon={name}
-                      size={40}
-                      style={{
-                        tintColor: focused ? colors.primary : colors.gray,
-                      }}
-                    />
-                  );
-                },
-              }}
-              listeners={{
-                focus: () => {
-                  Animated.spring(offsetAnimation, {
-                    toValue: index * (sizes.width / tabs.length),
-                    useNativeDriver: true,
-                  }).start();
-                },
-              }}
-            />
-          );
-        })}
-      </Tab.Navigator>
+      <OrderProvider>
+        <ToastProvider>
+          <Tab.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+              headerShown: false,
+              tabBarShowLabel: false,
+            }}
+          >
+            {tabs.map(({ name, screen }, index) => {
+              return (
+                <Tab.Screen
+                  key={name}
+                  name={name}
+                  component={screen}
+                  options={{
+                    tabBarIcon: ({ focused }) => {
+                      return (
+                        <Icon
+                          icon={name}
+                          size={40}
+                          style={{
+                            tintColor: focused ? colors.primary : colors.gray,
+                          }}
+                        />
+                      );
+                    },
+                  }}
+                  listeners={{
+                    focus: () => {
+                      Animated.spring(offsetAnimation, {
+                        toValue: index * (sizes.width / tabs.length),
+                        useNativeDriver: true,
+                      }).start();
+                    },
+                  }}
+                />
+              );
+            })}
+          </Tab.Navigator>
+        </ToastProvider>
       </OrderProvider>
       <Animated.View
         style={[
@@ -87,7 +90,7 @@ const TabNavigator = () => {
 
 const styles = StyleSheet.create({
   indicator: {
-    position: 'absolute',
+    position: "absolute",
     width: 10,
     height: 2,
     left: sizes.width / tabs.length / 2 - 5,

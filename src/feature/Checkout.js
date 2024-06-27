@@ -1,16 +1,19 @@
+// src/screens/Checkout.js
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { t } from "react-native-tailwindcss";
-import { updateOrders } from "../service/Order";
+import { updateOrders, fetchOrderById } from "../service/Order";
 import { useOrders } from '../context/OrderContext';
 import { Formik } from 'formik';
 import { validationSchema } from "../constants/schema";
 import LoadingAnimation from "../component/Loading";
+import { useToast } from '../component/Toast'; 
 
 const Checkout = ({ order, navigation }) => {
   const [orderId, setOrderId] = useState("");
   const { refreshOrders } = useOrders();
   const [loading, setLoading] = useState(false);
+  const toast = useToast();  // Initialize the toast hook
 
   useEffect(() => {
     const generateOrderId = () => Math.random().toString(36).substr(2, 9);
@@ -31,11 +34,23 @@ const Checkout = ({ order, navigation }) => {
     };
 
     try {
+      // Check if the order already exists
+      await fetchOrderById(orderId);
+      toast.current.show('Order with this ID already exists!', { type: 'error' });
+      setLoading(false);
+      return;
+    } catch (error) {
+      // Order not found, proceed with updating orders
+    }
+
+    try {
       await updateOrders(newOrder);
       await refreshOrders(); // Refresh the orders after adding a new order
       navigation.navigate("Home");
+      toast.current.show('Transaction completed successfully!');
     } catch (error) {
       console.error("Error processing order:", error);
+      toast.current.show('Error processing order!', { type: 'error' });
     } finally {
       setLoading(false);
     }
