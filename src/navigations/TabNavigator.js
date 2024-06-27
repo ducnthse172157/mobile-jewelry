@@ -8,6 +8,7 @@ import HomeNavigator from "./HomeNavigator";
 import OrderScreen from "../screen/OrderScreen";
 import { ToastProvider } from "../component/Toast";
 import { OrderProvider } from "../context/OrderContext";
+import SearchNavigator from "./SearchNavigator";
 
 const tabs = [
   {
@@ -16,7 +17,7 @@ const tabs = [
   },
   {
     name: "Search",
-    screen: SubNavigator,
+    screen: SearchNavigator,
   },
   {
     name: "Favorite",

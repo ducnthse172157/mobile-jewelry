@@ -10,6 +10,10 @@ export const colors = {
   white: '#fff',
   black: '#000',
   lightPink:'#ffb6c1',
+  accent: '#FFC231',
+  lightPink:'#ffb6c1',
+  accentRed: '#FB5D2E',
+  accentPink: '#F96165',
 };
 
 export const shadow = {
