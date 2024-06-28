@@ -109,24 +109,6 @@ const SearchContent = (navigation) => {
           alignItems: 'center',
         }}>
           <View style={{marginBottom:50}}>
-            <View style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              display: data.price ? 'flex' : 'none',
-            }}>
-            <FontAwesome name="heart" style={{
-              fontSize:10,
-              color:colors.accent,
-            }}/>
-            <Text style={{
-              fontSize:12,
-              color:colors.black,
-              opacity:0.8,
-              marginLeft:5,
-            }}>
-             top of Jewelry   
-            </Text>
-            </View>
             <Text style={{
               fontSize:22,
               color:colors.black,
@@ -238,54 +220,6 @@ const SearchContent = (navigation) => {
               Load more
             </Text>
           </TouchableOpacity>
-            
-          
-
-
-    {/* <View>
-        {searchData.map((data, index)=>{
-            return (
-                <View key={index}>
-                 {data.id === 1 ? (
-                    <View
-                        style={{
-                            // display: 'grid',
-                            // gridTemplateColumns: 'auto auto', 
-                            // backgroundColor: 'pink',
-                        }}>
-                        <View style= {{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            flexWrap:'wrap',
-                            width: '100%',
-                            margin: '0 auto',
-                            gap: 24,
-                            justifyContent: 'center',
-                        }}>
-                        {data.images.map((imageData, imgIndex)=>{
-                            return (
-                                <TouchableOpacity 
-                                  onPressIn={()=> props.data(imageData)} 
-                                  onPressOut={()=> props.data(null)} 
-                                  style={{paddingBottom:2 }}>
-                                  <Image source={imageData} style={{width: 180, height: 150}}/>
-                                </TouchableOpacity>
-                            );
-                        })}
-                        </View>  
-                        <TouchableOpacity 
-                          onPressIn={()=> props.data(data.images[5])} 
-                          onPressOut={()=> props.data(null)} 
-                          style={{marginLeft: 2}}>
-                        </TouchableOpacity>
-                    </View>
-                ) : null }
-
-                
-                </View>
-            );
-        })}
-    </View> */}
     </View>  
   );
 }

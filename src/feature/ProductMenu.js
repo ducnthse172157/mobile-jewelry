@@ -1,4 +1,3 @@
-// feature/ProductMenu.js
 import React, { useState } from "react";
 import { View, Text, Image, Pressable } from "react-native";
 import { Picker } from '@react-native-picker/picker';
@@ -53,9 +52,6 @@ const ProductMenu = ({
 
   return (
     <View style={[t.mB20]}>
-      <Text style={[t.text2xl, t.textCenter, t.fontBold, t.textPink700, t.mB4]}>
-        Product Menu
-      </Text>
       <View style={[t.flexRow, t.justifyBetween, t.mB4]}>
         <View style={[t.flexRow, t.justifyBetween, t.itemsCenter, t.border, t.roundedFull, t.w1_3, t.h8]}>
           <Picker
@@ -88,9 +84,11 @@ const ProductMenu = ({
       <View style={[t.flex, t.flexWrap, t.flexRow, t.justifyBetween]}>
         {paginatedProducts.map((product) => (
           <Pressable
-          key={product._id}
-          style={[t.w1_2, t.p1]}
-          onPress={() => navigation.navigate("Info", { productId: product._id })}
+            key={product._id}
+            style={[t.w1_2, t.p1]}
+            onPress={() => navigation.navigate("Info", { 
+              productId: product._id
+            })}
           >
             <Card style={[t.bgWhite, t.roundedLg, t.shadowLg]}>
               <View style={[t.relative]}>
@@ -163,9 +161,9 @@ const ProductMenu = ({
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        handleNextPage={handleNextPage}
-        handlePreviousPage={handlePreviousPage}
-        handlePageChange={handlePageChange}
+        onNextPage={handleNextPage}
+        onPreviousPage={handlePreviousPage}
+        onPageChange={handlePageChange}
       />
     </View>
   );

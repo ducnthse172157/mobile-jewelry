@@ -1,10 +1,19 @@
-import React, {useState} from 'react';
-import {TextInput, View, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { TextInput, View, StyleSheet } from 'react-native';
 import Icon from '../Icon';
-import {colors, spacing, sizes, shadow} from '../../constants/theme';
+import { colors, spacing, sizes, shadow } from '../../constants/theme';
 
-const SearchInput = () => {
+const SearchInput = ({ products, onSearch }) => {
   const [search, setSearch] = useState('');
+
+  const handleSearch = (text) => {
+    setSearch(text);
+    const filteredProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(text.toLowerCase())
+    );
+    onSearch(filteredProducts);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
@@ -15,7 +24,7 @@ const SearchInput = () => {
           style={styles.field}
           placeholder="Search"
           value={search}
-          onChangeText={setSearch}
+          onChangeText={handleSearch}
         />
         <View style={styles.filter}>
           <Icon icon="Filter" onPress={() => {}} />

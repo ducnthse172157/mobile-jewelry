@@ -1,7 +1,6 @@
 import React from 'react';
 import {Image, View, StyleSheet, TouchableOpacity, Text} from 'react-native';
 import {colors, shadow, sizes, spacing} from '../constants/theme';
-import FavoriteButton from './FavoriteButton';
 import {useNavigation} from '@react-navigation/native';
 import {SharedElement} from 'react-navigation-shared-element';
 
@@ -31,7 +30,6 @@ const JewelrysList = ({list}) => {
                   <Text style={styles.title}>{item.name}</Text>
                   <Text style={styles.location}>{item.price}</Text>
                 </View>
-                <FavoriteButton />
               </View>
             </View>
           </TouchableOpacity>

@@ -1,33 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import React, { useState} from 'react';
+import { View, Text, TextInput, TouchableOpacity, Alert, Pressable } from 'react-native';
 import { t } from 'react-native-tailwindcss';
-import * as Google from 'expo-google-auth';
-import * as AuthService from '../service/AuthService';
+import AuthService from '../service/AuthService';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const onSignInPressed = () => {
-    console.warn('Sign in');
-  };
-
-  const onGoogleSignInPressed = async () => {
+  const onSignInPressed = async () => {
     try {
-      const result = await Google.logInAsync({
-        iosClientId: 'YOUR_IOS_CLIENT_ID',
-        androidClientId: 'YOUR_ANDROID_CLIENT_ID',
-      });
-
-      if (result.type === 'success') {
-        await AuthService.loginWithGoogle(result.idToken);
-        Alert.alert('Success', 'Logged in with Google');
+      const response = await AuthService.login(username, password);
+      if (response.success) {
+        navigation.navigate('Root', { accessToken: response.accessToken });
       } else {
-        Alert.alert('Cancelled', 'Google Sign-In cancelled');
+        Alert.alert('Login Failed', response.message);
       }
     } catch (error) {
-      console.error(error);
-      Alert.alert('Error', 'Failed to log in with Google');
+      Alert.alert('Login Failed', 'Invalid credentials');
     }
   };
 
@@ -70,7 +59,7 @@ const LoginScreen = () => {
         placeholderTextColor="#a37a78"
       />
 
-      <TouchableOpacity
+      <Pressable
         style={[
           t.mB4,
           t.bgPink800,
@@ -81,21 +70,10 @@ const LoginScreen = () => {
         onPress={onSignInPressed}
       >
         <Text style={[t.textWhite, t.textLg, t.fontBold]}>Sign In</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[
-          t.bgPink800,
-          t.roundedFull,
-          t.pY4,
-          t.itemsCenter,
-        ]}
-        onPress={onGoogleSignInPressed}
-      >
-        <Text style={[t.textWhite, t.textLg, t.fontBold]}>Sign In with Google</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
+
 
 export default LoginScreen;

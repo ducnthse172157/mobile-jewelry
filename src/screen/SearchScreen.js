@@ -1,15 +1,18 @@
-// screens/SearchScreen.js
 import React, { useState, useEffect } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { t } from "react-native-tailwindcss";
 import ProductMenu from "../feature/ProductMenu";
 import OrderReceipt from "../feature/OrderReceipt";
 import SlideUpView from "../component/Slideup";
 import { FetchProducts } from "../service/Product";
 import LoadingAnimation from "../component/Loading";
+import MainHeader from "../component/MainHeader";
+import SearchInput from "../component/Search/SearchInput";
+import { colors } from "../constants/theme";
 
 const SearchScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [order, setOrder] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,6 +20,7 @@ const SearchScreen = ({ navigation }) => {
     FetchProducts()
       .then((data) => {
         setProducts(data);
+        setFilteredProducts(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -64,18 +68,25 @@ const SearchScreen = ({ navigation }) => {
     setOrder([]);
   };
 
+  const handleSearch = (filteredProducts) => {
+    setFilteredProducts(filteredProducts);
+  };
+
   if (loading) {
     return <LoadingAnimation />;
   }
 
   return (
-    <View style={[t.flex1]}>
+    <View style={styles.container}>
+      <MainHeader title="Search" />
+        <SearchInput products={products} onSearch={handleSearch} />
       <ScrollView
-        style={[t.flex1, t.absolute, t.wFull, t.hFull, t.p4, t.pB20]}
+        style={[t.flex1, t.wFull, t.hFull, t.p4, t.pB20]}
         showsVerticalScrollIndicator={false}
       >
+        
         <ProductMenu
-          products={products}
+          products={filteredProducts}
           addToOrder={addToOrder}
           increaseQuantity={increaseQuantity}
           decreaseQuantity={decreaseQuantity}
@@ -90,5 +101,12 @@ const SearchScreen = ({ navigation }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.lightPink,
+  },
+});
 
 export default SearchScreen;

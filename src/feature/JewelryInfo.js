@@ -1,10 +1,9 @@
-// feature/JewelryInfo.js
 import React, { useState } from "react";
 import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import { t } from "react-native-tailwindcss";
 import DetailAnimation from "../component/DetailAnimation";
 
-const JewelryInfo = ({ product, material, productType, gemstone }) => {
+const JewelryInfo = ({ product }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePreviousImage = () => {
@@ -62,16 +61,16 @@ const JewelryInfo = ({ product, material, productType, gemstone }) => {
             <Text style={[t.fontBold]}>Price:</Text> {product.price}&#x20AB;
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
-            <Text style={[t.fontBold]}>Type:</Text> {productType?.name}
+            <Text style={[t.fontBold]}>Type:</Text> {product.productTypeID.name}
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
             <Text style={[t.fontBold]}>Description:</Text> {product.description}
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
-            <Text style={[t.fontBold]}>Gemstones:</Text> {gemstone?.name}
+            <Text style={[t.fontBold]}>Gemstones:</Text> {product.gemstoneID.name}
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
-            <Text style={[t.fontBold]}>Materials:</Text> {material?.name}
+            <Text style={[t.fontBold]}>Materials:</Text> {product.materialID.name}
           </Text>
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
             <Text style={[t.fontBold]}>Weight:</Text> {product.weight}

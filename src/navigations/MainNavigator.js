@@ -5,6 +5,7 @@ import {StatusBar} from 'react-native';
 import JewelryDetailsScreen from '../screen/JewelryDetailsScreen';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import SplashScreen from '../screen/SplashScreen';
+import LoginScreen from '../screen/LoginScreen';
 
 const Stack = createSharedElementStackNavigator();
 
@@ -27,6 +28,14 @@ const MainNavigator = () => {
     <NavigationContainer>
       <StatusBar hidden />
       <Stack.Navigator>
+      <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            headerShown: false,
+            useNativeDriver: true,
+          }}
+        />
         <Stack.Screen
           name="Root"
           component={TabNavigator}

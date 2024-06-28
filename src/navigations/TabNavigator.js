@@ -17,7 +17,7 @@ const tabs = [
   },
   {
     name: "Search",
-    screen: SearchNavigator,
+    screen: SubNavigator,
   },
   {
     name: "Favorite",
