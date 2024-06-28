@@ -1,124 +1,30 @@
-// service/ProductDetails.js
-import axios from 'axios';
+// service/ProductType.js
+import axiosInstance from './Auth'; // Adjust the path if needed
 
-
-const BASE_URL = 'https://baitapdeploy-production.up.railway.app';
-
-export const fetchDetailByApi = async (apiLink, token) => {
-  if (!apiLink.startsWith('http')) {
-    throw new Error('Invalid API link');
-  }
-
+export const FetchProductTypes = async () => {
   try {
-    const response = await axios.get(apiLink, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
+    const response = await axiosInstance.get('/producttype');
+    if (response.data.success) {
+      return response.data.productTypes;
+    } else {
+      throw new Error('Failed to fetch product types');
+    }
   } catch (error) {
-    console.error('Error fetching detail:', error);
+    console.error('Failed to fetch product types:', error);
     throw error;
   }
 };
 
-
-export const fetchMaterialById = async (id, token) => {
+export const FetchCategory = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/material/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
+    const response = await axiosInstance.get('/category');
+    if (response.data.success) {
+      return response.data.categories; // Corrected from `productTypes` to `categories`
+    } else {
+      throw new Error('Failed to fetch categories');
+    }
   } catch (error) {
-    console.error('Error fetching material:', error.message);
-    throw new Error('Failed to fetch material');
-  }
-};
-
-export const fetchProductTypeById = async (id, token) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/producttype/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching product type:', error.message);
-    throw new Error('Failed to fetch product type');
-  }
-};
-
-export const fetchGemstoneById = async (id, token) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/gemstone/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching gemstone:', error.message);
-    throw new Error('Failed to fetch gemstone');
-  }
-};
-
-export const fetchGemstones = async (token) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/gemstone`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching gemstones:', error.message);
-    throw new Error('Failed to fetch gemstones');
-  }
-};
-
-export const fetchMaterials = async (token) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/material`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching materials:', error.message);
-    throw new Error('Failed to fetch materials');
-  }
-};
-
-export const fetchProductTypes = async () => {
-  try {
-    const token = await getToken(); // Retrieve token from AuthService
-    const response = await axios.get(`${BASE_URL}/producttype`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching product types:', error.message);
-    throw new Error('Failed to fetch product types');
-  }
-};
-
-
-export const fetchCategories = async (token) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/category`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching categories:', error.message);
-    throw new Error('Failed to fetch categories');
+    console.error('Failed to fetch categories:', error);
+    throw error;
   }
 };

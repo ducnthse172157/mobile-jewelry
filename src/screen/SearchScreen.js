@@ -1,33 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { View, ScrollView, StyleSheet } from "react-native";
+import { View, ScrollView, StyleSheet, Text } from "react-native";
 import { t } from "react-native-tailwindcss";
 import ProductMenu from "../feature/ProductMenu";
 import OrderReceipt from "../feature/OrderReceipt";
 import SlideUpView from "../component/Slideup";
 import { FetchProducts } from "../service/Product";
+import { FetchProductTypes, FetchCategory } from "../service/ProductDetail";
 import LoadingAnimation from "../component/Loading";
 import MainHeader from "../component/MainHeader";
 import SearchInput from "../component/Search/SearchInput";
+import CategoryMenu from "../feature/CategoryMenu";
 import { colors } from "../constants/theme";
 
 const SearchScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedProductType, setSelectedProductType] = useState('');
   const [order, setOrder] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    FetchProducts()
-      .then((data) => {
-        setProducts(data);
-        setFilteredProducts(data);
-        setLoading(false);
-      })
-      .catch((error) => {
+    const fetchData = async () => {
+      try {
+        const [productData, categoryData] = await Promise.all([
+          FetchProducts(),
+          FetchCategory(),
+        ]);
+        setProducts(productData);
+        setFilteredProducts(productData);
+        setCategories(categoryData);
+      } catch (error) {
         console.error(error);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
+
+  const handleCategorySelect = (categoryId) => {
+    setSelectedCategory(categoryId);
+    // Reset product type selection when category changes
+    setSelectedProductType('');
+    filterProducts(categoryId, '');
+  };
+
+  const handleProductTypeSelect = (categoryId, productTypeId) => {
+    setSelectedProductType(productTypeId);
+    filterProducts(categoryId, productTypeId);
+  };
+
+  const filterProducts = (categoryId, productTypeId) => {
+    let filtered = products;
+    if (categoryId) {
+      filtered = filtered.filter(product => product.productTypeID.categoryID._id === categoryId);
+    }
+    if (productTypeId) {
+      filtered = filtered.filter(product => product.productTypeID._id === productTypeId);
+    }
+    setFilteredProducts(filtered);
+  };
 
   const addToOrder = (product) => {
     const existingProduct = order.find((item) => item._id === product._id);
@@ -68,6 +103,12 @@ const SearchScreen = ({ navigation }) => {
     setOrder([]);
   };
 
+  const resetFilters = () => {
+    setSelectedCategory('');
+    setSelectedProductType('');
+    setFilteredProducts(products);
+  };
+
   const handleSearch = (filteredProducts) => {
     setFilteredProducts(filteredProducts);
   };
@@ -79,12 +120,17 @@ const SearchScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <MainHeader title="Search" />
-        <SearchInput products={products} onSearch={handleSearch} />
+      <SearchInput products={products} onSearch={handleSearch} />
+      
       <ScrollView
         style={[t.flex1, t.wFull, t.hFull, t.p4, t.pB20]}
         showsVerticalScrollIndicator={false}
       >
-        
+        <CategoryMenu 
+          categories={categories} 
+          onCategorySelect={handleCategorySelect} 
+          onProductTypeSelect={handleProductTypeSelect} 
+        />
         <ProductMenu
           products={filteredProducts}
           addToOrder={addToOrder}
