@@ -1,45 +1,71 @@
-// src/screen/OrderScreen.js
-import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, Text, Pressable, Animated } from 'react-native';
 import { t } from 'react-native-tailwindcss';
 import OrderList from '../feature/OrderList';
-import { useOrders } from '../context/OrderContext';
-import DeleteConfirmation from '../component/DeleteConfirmation';
+import CustomerList from '../feature/CustomerList';
 
 const OrderScreen = () => {
-  const { orders, refreshOrders, deleteOrder } = useOrders();
-  const [selectedOrderId, setSelectedOrderId] = useState(null);
-  const [isDeletePopupVisible, setDeletePopupVisible] = useState(false);
+  const [selectedSession, setSelectedSession] = useState('orders');
+  const slideAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    refreshOrders();
-  }, []);
+    Animated.timing(slideAnim, {
+      toValue: selectedSession === 'orders' ? 0 : 1,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  }, [selectedSession]);
 
-  const handleDelete = async (orderId) => {
-    await deleteOrder(orderId);
-    setDeletePopupVisible(false);
-  };
+  const underlineWidth = slideAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['20%', '30%'],
+  });
 
-  const openDeleteConfirmation = (orderId) => {
-    setSelectedOrderId(orderId);
-    setDeletePopupVisible(true);
-  };
+  const underlineLeft = slideAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['17%', '52%'],
+  });
 
   return (
     <View style={[t.m4]}>
-      <Text style={[t.textCenter, t.text2xl, t.fontBold, t.mB4, t.textPink700]}>Order List</Text>
-      <OrderList
-        orders={orders}
-        openDeleteConfirmation={openDeleteConfirmation}
-      />
-      {isDeletePopupVisible && (
-        <DeleteConfirmation
-          isVisible={isDeletePopupVisible}
-          onClose={() => setDeletePopupVisible(false)}
-          onConfirm={() => handleDelete(selectedOrderId)}
-          orderId={selectedOrderId}
+      <View style={[t.flexRow, t.justifyCenter, t.mB4, t.relative]}>
+        <Pressable onPress={() => setSelectedSession('orders')}>
+          <Text
+            style={[
+              t.mR4,
+              t.p2,
+              t.textLg,
+              selectedSession === 'orders' ? t.textPink500 : t.textGray500,
+              selectedSession === 'orders' && t.fontBold,
+            ]}
+          >
+            Orders
+          </Text>
+        </Pressable>
+        <Pressable onPress={() => setSelectedSession('customers')}>
+          <Text
+            style={[
+              t.mL4,
+              t.p2,
+              t.textLg,
+              selectedSession === 'customers' ? t.textPink500 : t.textGray500,
+              selectedSession === 'customers' && t.fontBold,
+            ]}
+          >
+            Customers
+          </Text>
+        </Pressable>
+        <Animated.View
+          style={[
+            t.absolute,
+            t.bottom0,
+            t.h1,
+            t.bgPink700,
+            { width: underlineWidth, left: underlineLeft },
+          ]}
         />
-      )}
+      </View>
+      {selectedSession === 'orders' ? <OrderList /> : <CustomerList />}
     </View>
   );
 };

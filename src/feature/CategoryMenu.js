@@ -6,6 +6,7 @@ import {
   FlatList,
   Modal,
   StyleSheet,
+  Pressable,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { colors } from "../constants/theme";
@@ -26,7 +27,7 @@ const CategoryMenu = ({
     const fetchProductTypes = async () => {
       try {
         const types = await FetchProductTypes();
-        setProductTypes(types);
+        setProductTypes([{ _id: 'all', name: 'All' }, ...types]);
       } catch (error) {
         console.error(error);
       }
@@ -39,7 +40,9 @@ const CategoryMenu = ({
     setCurrentSelected(index);
     onCategorySelect(categoryId);
     setCurrentCategoryId(categoryId);
-    setShowPicker(true); // Show the product type picker when a category is selected
+    if (categoryId === 'all') {
+      setShowPicker(false); // Close the picker if "All" is selected
+    }
   };
 
   const handleProductTypeChange = (categoryId, productTypeId) => {
@@ -52,12 +55,12 @@ const CategoryMenu = ({
   };
 
   const renderProductTypeItem = ({ item }) => (
-    <TouchableOpacity
+    <Pressable
       style={styles.productTypeItem}
       onPress={() => handleProductTypeChange(currentCategoryId, item._id)}
     >
       <Text style={styles.productTypeText}>{item.name}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 
   const renderItem = ({ item, index }) => {
@@ -85,24 +88,26 @@ const CategoryMenu = ({
             >
               {item.name}
             </Text>
-            <TouchableOpacity
-              style={styles.iconContainer}
-              onPress={() => {
-                setShowPicker(true);
-                setCurrentCategoryId(item._id);
-              }}
-            >
-              <FontAwesome
-                name="angle-right"
-                style={[
-                  styles.icon,
-                  {
-                    color:
-                      currentSelected === index ? colors.black : colors.white,
-                  },
-                ]}
-              />
-            </TouchableOpacity>
+            {item._id !== 'all' && (
+              <Pressable
+                style={styles.iconContainer}
+                onPress={() => {
+                  setShowPicker(true);
+                  setCurrentCategoryId(item._id);
+                }}
+              >
+                <FontAwesome
+                  name="angle-right"
+                  style={[
+                    styles.icon,
+                    {
+                      color:
+                        currentSelected === index ? colors.black : colors.white,
+                    },
+                  ]}
+                />
+              </Pressable>
+            )}
           </View>
         </TouchableOpacity>
 
@@ -112,17 +117,17 @@ const CategoryMenu = ({
               <View style={styles.pickerContainer}>
                 <FlatList
                   data={productTypes.filter(
-                    (type) => type.categoryID._id === currentCategoryId
+                    (type) => type.categoryID?._id === currentCategoryId || type._id === 'all'
                   )}
                   renderItem={renderProductTypeItem}
                   keyExtractor={(type) => type._id}
                 />
-                <TouchableOpacity
+                <Pressable
                   style={styles.closeButton}
                   onPress={() => setShowPicker(false)}
                 >
                   <Text style={styles.closeButtonText}>Close</Text>
-                </TouchableOpacity>
+                </Pressable>
               </View>
             </View>
           </Modal>
@@ -135,7 +140,7 @@ const CategoryMenu = ({
     <View>
       <FlatList
         horizontal
-        data={categories}
+        data={[{ _id: 'all', name: 'All' }, ...categories]}
         renderItem={renderItem}
         keyExtractor={(item) => item._id}
         showsHorizontalScrollIndicator={false}

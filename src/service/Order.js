@@ -1,46 +1,12 @@
 // src/service/Order.js
-import orders from "../mock/Order.json"; // Your fake API data
+import axiosInstance from './Auth';
 
-export const updateOrders = (newOrder) => {
-  // Ensure orders is an array
-  if (!Array.isArray(orders)) {
-    orders = []; // Initialize if not already an array
-  }
-  orders.push(newOrder);
-  console.log('Updated orders:', orders);
-};
-
-export const fetchOrders = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([...orders]);
-    }, 1000);
-  });
-};
-
-export const fetchOrderById = async (orderId) => {
-  // Simulate an async operation
-  return new Promise((resolve, reject) => {
-    const order = orders.find(order => order.orderId === orderId);
-    if (order) {
-      resolve(order);
-    } else {
-      reject(new Error('Order not found'));
+export const FetchCustomers = async () => {
+    try {
+      const response = await axiosInstance.get('/customers');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+      throw error;
     }
-  });
-};
-
-export const deleteOrder = (orderId) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const index = orders.findIndex(order => order.orderId === orderId);
-      if (index !== -1) {
-        orders.splice(index, 1);
-        console.log('Deleted order:', orderId);
-        resolve(orders);
-      } else {
-        reject(new Error('Order not found'));
-      }
-    }, 1000);
-  });
 };

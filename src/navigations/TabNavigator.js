@@ -7,8 +7,6 @@ import Icon from "../component/Icon";
 import HomeNavigator from "./HomeNavigator";
 import OrderScreen from "../screen/OrderScreen";
 import { ToastProvider } from "../component/Toast";
-import { OrderProvider } from "../context/OrderContext";
-import SearchNavigator from "./SearchNavigator";
 
 const tabs = [
   {
@@ -31,7 +29,6 @@ const TabNavigator = () => {
   const offsetAnimation = React.useRef(new Animated.Value(0)).current;
   return (
     <>
-      <OrderProvider>
         <ToastProvider>
           <Tab.Navigator
             initialRouteName="Home"
@@ -72,7 +69,6 @@ const TabNavigator = () => {
             })}
           </Tab.Navigator>
         </ToastProvider>
-      </OrderProvider>
       <Animated.View
         style={[
           styles.indicator,

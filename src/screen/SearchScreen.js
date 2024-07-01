@@ -55,10 +55,10 @@ const SearchScreen = ({ navigation }) => {
 
   const filterProducts = (categoryId, productTypeId) => {
     let filtered = products;
-    if (categoryId) {
+    if (categoryId && categoryId !== 'all') {
       filtered = filtered.filter(product => product.productTypeID.categoryID._id === categoryId);
     }
-    if (productTypeId) {
+    if (productTypeId && productTypeId !== 'all') {
       filtered = filtered.filter(product => product.productTypeID._id === productTypeId);
     }
     setFilteredProducts(filtered);
