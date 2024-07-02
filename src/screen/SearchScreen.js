@@ -5,7 +5,7 @@ import ProductMenu from "../feature/ProductMenu";
 import OrderReceipt from "../feature/OrderReceipt";
 import SlideUpView from "../component/Slideup";
 import { FetchProducts } from "../service/Product";
-import { FetchProductTypes, FetchCategory } from "../service/ProductDetail";
+import { FetchCategory } from "../service/ProductDetail";
 import LoadingAnimation from "../component/Loading";
 import MainHeader from "../component/MainHeader";
 import SearchInput from "../component/Search/SearchInput";

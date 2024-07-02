@@ -1,86 +1,49 @@
-import React from 'react';
-import { View, TextInput } from 'react-native';
-import { t } from 'react-native-tailwindcss';
+// src/feature/CustomerEdit.js
+import React, { useState } from "react";
+import { View, TextInput, Text, Pressable } from "react-native";
+import { t } from "react-native-tailwindcss";
 
-const CustomerInfo = ({ values, handleChange, handleBlur, errors, touched }) => {
+const CustomerEdit = ({ customer, onSave }) => {
+  const [editedCustomer, setEditedCustomer] = useState({ ...customer });
+
+  const handleChange = (name, value) => {
+    setEditedCustomer({ ...editedCustomer, [name]: value });
+  };
+
   return (
-    <View>
+    <View style={[t.p4, t.borderB, t.borderPink600]}>
+      <Text style={[t.textPink800, t.textLg, t.mB2]}>Edit Customer Information</Text>
       <TextInput
-        style={[
-          t.borderB,
-          t.borderGray400,
-          t.rounded,
-          t.p2,
-          t.textPink700,
-          t.mY2,
-          t.wFull,
-        ]}
-        placeholder="Enter customer name"
-        value={values.customerName}
-        onChangeText={handleChange('customerName')}
-        onBlur={handleBlur('customerName')}
+        style={[t.border, t.borderPink600, t.p2, t.mB2]}
+        placeholder="Name"
+        value={editedCustomer.name}
+        onChangeText={(text) => handleChange("name", text)}
       />
-      {touched.customerName && errors.customerName && (
-        <Text style={[t.textRed500]}>{errors.customerName}</Text>
-      )}
       <TextInput
-        style={[
-          t.borderB,
-          t.borderGray400,
-          t.rounded,
-          t.p2,
-          t.textPink700,
-          t.mY2,
-          t.wFull,
-        ]}
-        placeholder="Enter customer age"
-        keyboardType="numeric"
-        value={values.age}
-        onChangeText={handleChange('age')}
-        onBlur={handleBlur('age')}
+        style={[t.border, t.borderPink600, t.p2, t.mB2]}
+        placeholder="Age"
+        value={editedCustomer.age}
+        onChangeText={(text) => handleChange("age", text)}
       />
-      {touched.age && errors.age && (
-        <Text style={[t.textRed500]}>{errors.age}</Text>
-      )}
       <TextInput
-        style={[
-          t.borderB,
-          t.borderGray400,
-          t.rounded,
-          t.p2,
-          t.textPink700,
-          t.mY2,
-          t.wFull,
-        ]}
-        placeholder="Enter customer phone"
-        keyboardType="phone-pad"
-        value={values.phone}
-        onChangeText={handleChange('phone')}
-        onBlur={handleBlur('phone')}
+        style={[t.border, t.borderPink600, t.p2, t.mB2]}
+        placeholder="Phone"
+        value={editedCustomer.phone}
+        onChangeText={(text) => handleChange("phone", text)}
       />
-      {touched.phone && errors.phone && (
-        <Text style={[t.textRed500]}>{errors.phone}</Text>
-      )}
       <TextInput
-        style={[
-          t.borderB,
-          t.borderGray400,
-          t.rounded,
-          t.p2,
-          t.textPink700,
-          t.mY2,
-          t.wFull,
-        ]}
-        placeholder="Enter customer address"
-        value={values.address}
-        onChangeText={handleChange('address')}
-        onBlur={handleBlur('address')}
+        style={[t.border, t.borderPink600, t.p2, t.mB2]}
+        placeholder="Address"
+        value={editedCustomer.address}
+        onChangeText={(text) => handleChange("address", text)}
       />
-      {touched.address && errors.address && (
-        <Text style={[t.textRed500]}>{errors.address}</Text>
-      )}
+      <View style={[t.flexRow, t.justifyAround]}>
+        <Pressable style={[t.bgPink600, t.p2, t.roundedLg]} onPress={() => onSave(editedCustomer)}>
+          <Text style={[t.textWhite]}>Save Changes</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
 
-export default CustomerInfo;
+export default CustomerEdit;

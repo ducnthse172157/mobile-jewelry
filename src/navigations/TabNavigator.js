@@ -5,8 +5,8 @@ import { colors, sizes } from "../constants/theme";
 import { StyleSheet, Animated } from "react-native";
 import Icon from "../component/Icon";
 import HomeNavigator from "./HomeNavigator";
-import OrderScreen from "../screen/OrderScreen";
 import { ToastProvider } from "../component/Toast";
+import OrderNavigator from "./OrderNavigator";
 
 const tabs = [
   {
@@ -19,7 +19,7 @@ const tabs = [
   },
   {
     name: "Favorite",
-    screen: OrderScreen,
+    screen: OrderNavigator,
   },
 ];
 

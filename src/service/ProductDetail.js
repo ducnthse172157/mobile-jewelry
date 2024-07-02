@@ -1,5 +1,5 @@
 // service/ProductType.js
-import axiosInstance from './Auth'; // Adjust the path if needed
+import axiosInstance from './Auth'; 
 
 export const FetchProductTypes = async () => {
   try {
@@ -19,7 +19,7 @@ export const FetchCategory = async () => {
   try {
     const response = await axiosInstance.get('/category');
     if (response.data.success) {
-      return response.data.categories; // Corrected from `productTypes` to `categories`
+      return response.data.categories; 
     } else {
       throw new Error('Failed to fetch categories');
     }

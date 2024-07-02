@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, Pressable } from 'react-native';
 import { t } from 'react-native-tailwindcss';
 import { FetchCustomers } from '../service/Order';
-
+import LoadingAnimation from '../component/Loading';
+import { useNavigation } from '@react-navigation/native';
 
 const CustomerList = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -25,7 +27,7 @@ const CustomerList = () => {
   }, []);
 
   if (loading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return <LoadingAnimation />;
   }
 
   if (error) {
@@ -33,21 +35,21 @@ const CustomerList = () => {
   }
 
   return (
-    <View style={[t.m4]}>
+    <ScrollView contentContainerStyle={[t.m4]}>
       <Text style={[t.textCenter, t.text2xl, t.fontBold, t.mB4, t.textPink700]}>Customer List</Text>
-      <FlatList
-        data={customers}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => (
-          <View style={[t.p4, t.borderB, t.borderGray300]}>
-            <Text style={[t.textLg]}>{item.name}</Text>
-            <Text>Age: {item.age}</Text>
-            <Text>Phone: {item.phone}</Text>
-            <Text>Address: {item.address}</Text>
-          </View>
-        )}
-      />
-    </View>
+      {customers.map((item) => (
+        <Pressable
+          key={item._id}
+          style={[t.p4, t.borderB, t.borderGray300]}
+          onPress={() => navigation.navigate('Customer Detail', { customerId: item._id })}
+        >
+          <Text style={[t.textLg, t.textPink700]}>{item.name}</Text>
+          <Text>Age: {item.age}</Text>
+          <Text>Phone: {item.phone}</Text>
+          <Text>Address: {item.address}</Text>
+        </Pressable>
+      ))}
+    </ScrollView>
   );
 };
 
