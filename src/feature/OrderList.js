@@ -30,7 +30,7 @@ const OrderList = () => {
   }
 
   return (
-    <ScrollView contentContainerStyle={[t.m4]}>
+    <ScrollView style={[t.mB20]}>
       <Text style={[t.textCenter, t.text2xl, t.fontBold, t.mB4, t.textPink700]}>Order List</Text>
       {orders.map((item) => (
         <Pressable

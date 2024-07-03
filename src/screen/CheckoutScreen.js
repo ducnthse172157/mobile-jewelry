@@ -1,6 +1,7 @@
 // src/screens/CheckoutScreen.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
+import { Picker } from '@react-native-picker/picker';
 import { t } from "react-native-tailwindcss";
 import Checkout from "../feature/Checkout";
 import AddCustomer from "../feature/AddCustomer";
@@ -9,6 +10,7 @@ import CustomerEdit from "../feature/CustomerEdit";
 import PaymentMethod from "../feature/PaymentMethod";
 import LoadingAnimation from "../component/Loading";
 import { useToast } from "../component/Toast";
+import { FetchStores } from "../service/Order";
 
 const CheckoutScreen = ({ route }) => {
   const { order } = route.params;
@@ -16,7 +18,25 @@ const CheckoutScreen = ({ route }) => {
   const [loading, setLoading] = useState(false);
   const [currentScreen, setCurrentScreen] = useState("checkout");
   const [customer, setCustomer] = useState(null);
+  const [stores, setStores] = useState([]);
+  const [selectedStore, setSelectedStore] = useState(null);
   const toast = useToast();
+
+  useEffect(() => {
+    const getStores = async () => {
+      try {
+        const storesData = await FetchStores();
+        setStores(storesData);
+        if (storesData.length > 0) {
+          setSelectedStore(storesData[0]._id);
+        }
+      } catch (error) {
+        toast.current.show("Failed to fetch stores.");
+      }
+    };
+
+    getStores();
+  }, []);
 
   const handleCompleteCheckout = async () => {
     setLoading(true);
@@ -34,16 +54,6 @@ const CheckoutScreen = ({ route }) => {
 
   const renderCustomerContent = () => {
     switch (currentScreen) {
-      case "addCustomer":
-        return (
-          <AddCustomer
-            onAddCustomer={(newCustomer) => {
-              setCustomer(newCustomer);
-              setCurrentScreen("viewCustomer");
-            }}
-            onNext={() => setCurrentScreen("viewCustomer")}
-          />
-        );
       case "viewCustomer":
         return (
           <ViewCustomer
@@ -67,9 +77,17 @@ const CheckoutScreen = ({ route }) => {
         );
       default:
         return (
-          <Pressable onPress={() => setCurrentScreen("addCustomer")}>
-            <Text style={[t.textPink800, t.textLg]}>Add Customer Info</Text>
-          </Pressable>
+          <AddCustomer
+            onAddCustomer={(newCustomer) => {
+              setCustomer(newCustomer);
+              setCurrentScreen("viewCustomer");
+            }}
+            onNext={() => setCurrentScreen("viewCustomer")}
+            onViewCustomer={(customer) => {
+              setCustomer(customer);
+              setCurrentScreen("viewCustomer");
+            }}
+          />
         );
     }
   };
@@ -83,6 +101,15 @@ const CheckoutScreen = ({ route }) => {
           <Checkout order={order} />
           {renderCustomerContent()}
           <PaymentMethod />
+          <Picker
+            selectedValue={selectedStore}
+            style={[t.border, t.borderPink600, t.p2, t.mT4]}
+            onValueChange={(itemValue) => setSelectedStore(itemValue)}
+          >
+            {stores.map((store) => (
+              <Picker.Item key={store._id} label={store.name} value={store._id} />
+            ))}
+          </Picker>
           <TextInput
             style={[t.border, t.borderPink600, t.p2, t.mT4]}
             placeholder="Description"
