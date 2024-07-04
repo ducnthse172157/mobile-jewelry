@@ -81,6 +81,9 @@ const JewelryInfo = ({ product }) => {
           <Text style={[t.textBase, t.textPink700, t.mB3]}>
             <Text style={[t.fontBold]}>Color:</Text> {product.color}
           </Text>
+          <Text style={[t.textBase, t.textPink700, t.mB3]}>
+            <Text style={[t.fontBold]}>Available:</Text> {product.quantity}
+          </Text>
         </View>
       </DetailAnimation>
     </View>

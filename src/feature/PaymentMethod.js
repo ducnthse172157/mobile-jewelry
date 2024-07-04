@@ -1,12 +1,10 @@
-// src/components/Payment.js
 import React, { useState, useEffect } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { t } from 'react-native-tailwindcss';
 import { FetchPayment } from '../service/Order';
 
-const Payment = () => {
+const PaymentMethod = ({ selectedPayments, setSelectedPayments }) => {
   const [paymentOptions, setPaymentOptions] = useState([]);
-  const [selectedPayments, setSelectedPayments] = useState({});
 
   useEffect(() => {
     const fetchPaymentOptions = async () => {
@@ -51,4 +49,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default PaymentMethod;

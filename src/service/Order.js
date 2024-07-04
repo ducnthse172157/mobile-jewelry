@@ -21,6 +21,36 @@ export const FetchOrderById = async (id) => {
   }
 };
 
+export const CreateOrder = async (order) => {
+  try {
+    const response = await axiosInstance.post('/orders', order);
+    return response.data.order;
+  } catch (error) {
+    console.error('Error creating order:', error);
+    throw error;
+  }
+};
+
+export const UpdateOrder = async (order) => {
+  try {
+    const response = await axiosInstance.put(`/orders/${id}`, order);
+    return response.data.order;
+  } catch (error) {
+    console.error('Error updating order:', error);
+    throw error;
+  }
+};
+
+export const CreateOrderDetail = async (orderDetail) => {
+  try {
+    const response = await axiosInstance.post('/orderDetails', orderDetail);
+    return response.data.orderDetails;
+  } catch (error) {
+    console.error('Error creating order detail:', error);
+    throw error;
+  }
+};
+
 export const CreateCustomer = async (customer) => {
   try {
     const response = await axiosInstance.post(`/customers`, customer);
