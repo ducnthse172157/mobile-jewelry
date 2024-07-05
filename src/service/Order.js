@@ -74,7 +74,7 @@ export const UpdateCustomer = async (id, customer) => {
 export const FetchCustomers = async () => {
     try {
       const response = await axiosInstance.get('/customers');
-      return response.data;
+      return response.data.customers;
     } catch (error) {
       console.error('Error fetching customers:', error);
       throw error;
@@ -85,7 +85,7 @@ export const FetchCustomers = async () => {
 export const FetchCustomerById = async (id) => {
   try {
     const response = await axiosInstance.get(`/customers/${id}`);
-    return response.data;
+    return response.data.customer;
   } catch (error) {
     console.error('Error fetching customer by ID:', error);
     throw error;

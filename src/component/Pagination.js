@@ -6,7 +6,17 @@ import Icon from "react-native-vector-icons/FontAwesome";
 const Pagination = ({ currentPage, totalPages, onNextPage, onPreviousPage, onPageChange }) => {
   const renderPageNumbers = () => {
     let pages = [];
-    for (let i = 1; i <= totalPages; i++) {
+    const limit = 5; // Limit of how many page numbers to display
+
+    // Calculate the start and end of the page numbers to display
+    let start = Math.max(1, currentPage - Math.floor(limit / 2));
+    let end = Math.min(totalPages, start + limit - 1);
+
+    if (end - start + 1 < limit) {
+      start = Math.max(1, end - limit + 1);
+    }
+
+    for (let i = start; i <= end; i++) {
       pages.push(
         <Pressable
           key={i}
@@ -16,10 +26,11 @@ const Pagination = ({ currentPage, totalPages, onNextPage, onPreviousPage, onPag
             t.pX2,
             t.pY1,
             t.roundedFull,
-            t.mX2, 
+            t.mX2,
+            { backgroundColor: i === currentPage ? "#F472B6" : "transparent" }, // Highlight current page
           ]}
         >
-          <Text style={[t.fontBold, i === currentPage ? t.textPink700 : t.textGray900]}>
+          <Text style={[t.fontBold, i === currentPage ? t.textWhite : t.textGray900]}>
             {i}
           </Text>
         </Pressable>

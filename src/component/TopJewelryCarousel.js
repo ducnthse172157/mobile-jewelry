@@ -8,7 +8,6 @@ import {
   Image,
 } from 'react-native';
 import {colors, shadow, sizes, spacing} from '../constants/theme';
-import FavoriteButton from './FavoriteButton';
 
 const CARD_WIDTH = sizes.width - 80;
 const CARD_HEIGHT = 200;
@@ -31,13 +30,11 @@ const TopJewelryCarousel = ({list}) => {
               marginRight: index === list.length - 1 ? spacing.l : 0,
             }}>
             <View style={[styles.card, shadow.dark]}>
-              <FavoriteButton style={styles.favorite} />
               <View style={styles.imageBox}>
                 <Image source={item.image} style={styles.image} />
               </View>
               <View style={styles.titleBox}>
-                <Text style={styles.title}>{item.name}</Text>
-                <Text style={styles.name}>{item.price}</Text>
+                <Text style={styles.title}>{item.description}</Text>
               </View>
             </View>
           </TouchableOpacity>

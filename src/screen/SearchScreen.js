@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, ScrollView, StyleSheet, Text } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { t } from "react-native-tailwindcss";
 import ProductMenu from "../feature/ProductMenu";
 import OrderReceipt from "../feature/OrderReceipt";
@@ -64,6 +64,26 @@ const SearchScreen = ({ navigation }) => {
     setFilteredProducts(filtered);
   };
 
+  const handleSearch = (filteredProducts) => {
+    setFilteredProducts(filteredProducts);
+  };
+
+  const handleSort = (option) => {
+    let sortedProducts = [...filteredProducts];
+    switch (option) {
+      case 'price_increase':
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+      case 'price_decrease':
+        sortedProducts.sort((a, b) => b.price - a.price);
+        break;
+      default:
+        setFilteredProducts(products);
+        break;
+    }
+    setFilteredProducts(sortedProducts);
+  };
+
   const addToOrder = (product) => {
     const existingProduct = order.find((item) => item._id === product._id);
     if (existingProduct) {
@@ -109,10 +129,6 @@ const SearchScreen = ({ navigation }) => {
     setFilteredProducts(products);
   };
 
-  const handleSearch = (filteredProducts) => {
-    setFilteredProducts(filteredProducts);
-  };
-
   if (loading) {
     return <LoadingAnimation />;
   }
@@ -120,7 +136,11 @@ const SearchScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <MainHeader title="Search" />
-      <SearchInput products={products} onSearch={handleSearch} />
+      <SearchInput
+        products={products}
+        onSearch={handleSearch}
+        onSort={handleSort}
+      />
       
       <ScrollView
         style={[t.flex1, t.wFull, t.hFull, t.p4, t.pB20]}

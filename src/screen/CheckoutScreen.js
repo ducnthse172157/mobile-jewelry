@@ -16,7 +16,7 @@ const CheckoutScreen = ({ route }) => {
   const { order } = route.params;
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
-  const [currentScreen, setCurrentScreen] = useState("");
+  const [currentScreen, setCurrentScreen] = useState("addCustomer");
   const [customer, setCustomer] = useState(null);
   const [stores, setStores] = useState([]);
   const [selectedStore, setSelectedStore] = useState(null);
@@ -80,6 +80,10 @@ const CheckoutScreen = ({ route }) => {
     }
   };
 
+  const handleCancelEdit = () => {
+    setCurrentScreen("viewCustomer");
+  };
+
   const renderCustomerContent = () => {
     switch (currentScreen) {
       case "viewCustomer":
@@ -99,8 +103,9 @@ const CheckoutScreen = ({ route }) => {
             customer={customer}
             onSave={(updatedCustomer) => {
               setCustomer(updatedCustomer);
-              setCurrentScreen("viewCustomer");
+              setCurrentScreen("addCustomer");
             }}
+            onCancel={handleCancelEdit}
           />
         );
       default:
@@ -108,7 +113,7 @@ const CheckoutScreen = ({ route }) => {
           <AddCustomer
             onAddCustomer={(newCustomer) => {
               setCustomer(newCustomer);
-              setCurrentScreen("viewCustomer");
+              setCurrentScreen("addCustomer");
             }}
             onNext={() => setCurrentScreen("viewCustomer")}
             onViewCustomer={(customer) => {

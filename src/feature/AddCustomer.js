@@ -1,4 +1,3 @@
-// src/feature/AddCustomer.js
 import React, { useState } from "react";
 import { View, TextInput, Text, Pressable, ScrollView } from "react-native";
 import { t } from "react-native-tailwindcss";
@@ -6,7 +5,7 @@ import { Formik } from 'formik';
 import { CustomerSchema } from "../constants/schema";
 import { CreateCustomer, FetchCustomers, FetchCustomerById } from "../service/Order";
 
-const AddCustomer = ({ onAddCustomer, onNext, onViewCustomer }) => {
+const AddCustomer = ({ onAddCustomer, onViewCustomer }) => {
   const [showForm, setShowForm] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
@@ -32,14 +31,11 @@ const AddCustomer = ({ onAddCustomer, onNext, onViewCustomer }) => {
   };
 
   const handleSave = async (values) => {
-    if (selectedCustomer) {
-      return;
-    }
     try {
       const newCustomer = await CreateCustomer(values);
       onAddCustomer(newCustomer);
+      setSelectedCustomer(null); // Clear the selected customer after adding
       setShowForm(false);
-      onNext();
     } catch (error) {
       console.error("Error adding customer:", error);
     }
@@ -74,14 +70,7 @@ const AddCustomer = ({ onAddCustomer, onNext, onViewCustomer }) => {
                   </Pressable>
                 ))}
               </ScrollView>
-              {selectedCustomer ? (
-                <>
-                  <Text style={[t.mT2]}>{`Name: ${selectedCustomer.name}`}</Text>
-                  <Text style={[t.mT2]}>{`Age: ${selectedCustomer.age}`}</Text>
-                  <Text style={[t.mT2]}>{`Phone: ${selectedCustomer.phone}`}</Text>
-                  <Text style={[t.mT2]}>{`Address: ${selectedCustomer.address}`}</Text>
-                </>
-              ) : (
+              {!selectedCustomer && (
                 <>
                   <TextInput
                     style={[t.border, t.borderPink600, t.p2, t.mB2]}

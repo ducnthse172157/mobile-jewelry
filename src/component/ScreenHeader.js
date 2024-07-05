@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   },
   secondTitle: {
     fontSize: sizes.title,
+    color: '#F472B6',
   },
 });
 

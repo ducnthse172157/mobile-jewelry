@@ -16,14 +16,18 @@ const OrderList = () => {
   const refreshOrders = async () => {
     try {
       const ordersData = await FetchOrders();
+      // Sort orders by the most recent date
+      ordersData.sort((a, b) => new Date(b.date) - new Date(a.date));
       setOrders(ordersData);
     } catch (error) {
       console.error('Error fetching orders:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    refreshOrders().finally(() => setLoading(false));
+    refreshOrders();
   }, []);
 
   const handleOpenPopup = (order) => {

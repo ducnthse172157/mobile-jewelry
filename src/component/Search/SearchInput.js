@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet, Pressable, Text, Modal } from 'react-native';
 import Icon from '../Icon';
 import { colors, spacing, sizes, shadow } from '../../constants/theme';
 
-const SearchInput = ({ products, onSearch }) => {
+const SearchInput = ({ products, onSearch, onSort }) => {
   const [search, setSearch] = useState('');
+  const [showSortOptions, setShowSortOptions] = useState(false);
 
   const handleSearch = (text) => {
     setSearch(text);
@@ -12,6 +13,11 @@ const SearchInput = ({ products, onSearch }) => {
       product.name.toLowerCase().includes(text.toLowerCase())
     );
     onSearch(filteredProducts);
+  };
+
+  const handleSortOption = (option) => {
+    setShowSortOptions(false);
+    onSort(option);
   };
 
   return (
@@ -26,10 +32,44 @@ const SearchInput = ({ products, onSearch }) => {
           value={search}
           onChangeText={handleSearch}
         />
-        <View style={styles.filter}>
-          <Icon icon="Filter" onPress={() => {}} />
-        </View>
+        <Pressable
+          style={styles.filter}
+          onPress={() => setShowSortOptions(true)}
+        >
+          <Icon icon="Filter" />
+        </Pressable>
       </View>
+
+      {/* Sort Options Modal */}
+      <Modal
+        visible={showSortOptions}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setShowSortOptions(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Pressable
+              style={styles.sortOption}
+              onPress={() => handleSortOption('default')}
+            >
+              <Text style={styles.sortOptionText}>Default</Text>
+            </Pressable>
+            <Pressable
+              style={styles.sortOption}
+              onPress={() => handleSortOption('price_increase')}
+            >
+              <Text style={styles.sortOptionText}>Sort Price Increase</Text>
+            </Pressable>
+            <Pressable
+              style={styles.sortOption}
+              onPress={() => handleSortOption('price_decrease')}
+            >
+              <Text style={styles.sortOptionText}>Sort Price Decrease</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -64,6 +104,29 @@ const styles = StyleSheet.create({
     top: 10,
     right: 10,
     zIndex: 1,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: colors.white,
+    borderTopLeftRadius: sizes.radius,
+    borderTopRightRadius: sizes.radius,
+    paddingHorizontal: spacing.l,
+    paddingBottom: spacing.l,
+    paddingTop: spacing.m,
+    alignItems: 'center',
+  },
+  sortOption: {
+    paddingVertical: spacing.m,
+    width: '100%',
+    alignItems: 'center',
+  },
+  sortOptionText: {
+    fontSize: sizes.base,
+    color: colors.gray700,
   },
 });
 
