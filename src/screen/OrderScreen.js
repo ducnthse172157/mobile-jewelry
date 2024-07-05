@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Pressable, Animated } from 'react-native';
+import { View, Text, Pressable, Animated, StyleSheet } from 'react-native';
 import { t } from 'react-native-tailwindcss';
 import OrderList from '../feature/OrderList';
 import CustomerList from '../feature/CustomerList';
+import { colors } from "../constants/theme";
 
 const OrderScreen = () => {
   const [selectedSession, setSelectedSession] = useState('orders');
@@ -27,7 +28,7 @@ const OrderScreen = () => {
   });
 
   return (
-    <View style={[t.m4]}>
+    <View style={[t.p4, styles.container]}>
       <View style={[t.flexRow, t.justifyCenter, t.mB4, t.relative]}>
         <Pressable onPress={() => setSelectedSession('orders')}>
           <Text
@@ -35,7 +36,7 @@ const OrderScreen = () => {
               t.mR4,
               t.p2,
               t.textLg,
-              selectedSession === 'orders' ? t.textPink500 : t.textGray500,
+              selectedSession === 'orders' ? t.textPink500 : t.textGray100,
               selectedSession === 'orders' && t.fontBold,
             ]}
           >
@@ -48,7 +49,7 @@ const OrderScreen = () => {
               t.mL4,
               t.p2,
               t.textLg,
-              selectedSession === 'customers' ? t.textPink500 : t.textGray500,
+              selectedSession === 'customers' ? t.textPink500 : t.textGray100,
               selectedSession === 'customers' && t.fontBold,
             ]}
           >
@@ -69,5 +70,12 @@ const OrderScreen = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.lightPink,
+  },
+});
 
 export default OrderScreen;

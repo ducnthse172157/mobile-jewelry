@@ -4,26 +4,37 @@ import { t } from 'react-native-tailwindcss';
 import { FetchOrders } from '../service/Order';
 import LoadingAnimation from '../component/Loading';
 import { useNavigation } from '@react-navigation/native';
+import OrderOption from '../component/OrderOption';
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
   const navigation = useNavigation();
 
-  useEffect(() => {
-    const loadOrders = async () => {
-      try {
-        const ordersData = await FetchOrders();
-        setOrders(ordersData);
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const refreshOrders = async () => {
+    try {
+      const ordersData = await FetchOrders();
+      setOrders(ordersData);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    }
+  };
 
-    loadOrders();
+  useEffect(() => {
+    refreshOrders().finally(() => setLoading(false));
   }, []);
+
+  const handleOpenPopup = (order) => {
+    setSelectedOrder(order);
+    setIsPopupVisible(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupVisible(false);
+    setSelectedOrder(null);
+  };
 
   if (loading) {
     return <LoadingAnimation />;
@@ -48,8 +59,19 @@ const OrderList = () => {
           <Text>Remaining Amount: {item.remainingAmount}</Text>
           <Text>Excess Amount: {item.excessAmount}</Text>
           <Text>Date: {new Date(item.date).toLocaleDateString()}</Text>
+          <Pressable onPress={() => handleOpenPopup(item)} style={[t.mT2, t.p2]}>
+            <Text style={[t.textPink600, t.textCenter]}>Options</Text>
+          </Pressable>
         </Pressable>
       ))}
+      {selectedOrder && (
+        <OrderOption
+          isVisible={isPopupVisible}
+          onClose={handleClosePopup}
+          order={selectedOrder}
+          refreshOrders={refreshOrders}
+        />
+      )}
     </ScrollView>
   );
 };

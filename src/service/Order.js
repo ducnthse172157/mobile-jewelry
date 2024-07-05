@@ -31,9 +31,9 @@ export const CreateOrder = async (order) => {
   }
 };
 
-export const UpdateOrder = async (order) => {
+export const UpdateOrder = async (id, order) => {
   try {
-    const response = await axiosInstance.put(`/orders/${id}`, order);
+    const response = await axiosInstance.put(`/orders/${id}`, order); 
     return response.data.order;
   } catch (error) {
     console.error('Error updating order:', error);
@@ -105,7 +105,7 @@ export const FetchPayment = async () => {
 export const FetchStores = async () => {
   try {
     const response = await axiosInstance.get('/stores');
-    return response.data;
+    return response.data.stores;
   } catch (error) {
     console.error('Error fetching customers:', error);
     throw error;
