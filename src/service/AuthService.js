@@ -35,6 +35,30 @@ const AuthService = {
       throw error;
     }
   },
+
+  refreshAccessToken: async () => {
+    try {
+      const refreshToken = await AsyncStorage.getItem('refreshToken');
+      if (!refreshToken) {
+        throw new Error('No refresh token available');
+      }
+
+      const response = await axios.post(`${API_URL}/refreshToken`, {
+        refreshToken,
+      });
+
+      if (response.data.success) {
+        const { accessToken } = response.data;
+        await AsyncStorage.setItem('accessToken', accessToken);
+        return accessToken;
+      } else {
+        throw new Error('Token refresh failed');
+      }
+    } catch (error) {
+      console.error('Token refresh failed:', error);
+      throw error;
+    }
+  },
 };
 
 export default AuthService;

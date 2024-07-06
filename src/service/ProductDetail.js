@@ -31,7 +31,7 @@ export const FetchCategory = async () => {
 
 export const FetchMaterial = async () => {
   try {
-    const response = await axiosInstance.get('/material');
+    const response = await axiosInstance.get(`/material`);
     if (response.data.success) {
       return response.data.materials; 
     } else {
@@ -43,41 +43,41 @@ export const FetchMaterial = async () => {
   }
 };
 
-export const FetchProductTypeById = async () => {
+export const FetchGemstone = async () => {
   try {
-    const response = await axiosInstance.get('/producttype');
+    const response = await axiosInstance.get(`/gemstone`);
     if (response.data.success) {
-      return response.data.productTypes;
+      return response.data.gemstones; 
     } else {
-      throw new Error('Failed to fetch product types');
+      throw new Error('Failed to fetch gemstones');
     }
   } catch (error) {
-    console.error('Failed to fetch product types:', error);
+    console.error('Failed to fetch materials:', error);
     throw error;
   }
 };
 
-export const FetchCategoryById = async () => {
+export const FetchMaterialById = async (id) => {
   try {
-    const response = await axiosInstance.get('/category');
+    const response = await axiosInstance.get(`/material/${id}`);
     if (response.data.success) {
-      return response.data.categories; 
-    } else {
-      throw new Error('Failed to fetch categories');
-    }
-  } catch (error) {
-    console.error('Failed to fetch categories:', error);
-    throw error;
-  }
-};
-
-export const FetchMaterialById = async () => {
-  try {
-    const response = await axiosInstance.get('/material');
-    if (response.data.success) {
-      return response.data.materials; 
+      return response.data.material; 
     } else {
       throw new Error('Failed to fetch materials');
+    }
+  } catch (error) {
+    console.error('Failed to fetch materials:', error);
+    throw error;
+  }
+};
+
+export const FetchGemstoneById = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/gemstone/${id}`);
+    if (response.data.success) {
+      return response.data.gemstone; 
+    } else {
+      throw new Error('Failed to fetch gemstones');
     }
   } catch (error) {
     console.error('Failed to fetch materials:', error);

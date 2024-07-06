@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { t } from 'react-native-tailwindcss';
-import { FetchOrders } from '../service/Order';
+import { FetchOrders } from '../service/Order'; // Import the FetchOrders function
 import LoadingAnimation from '../component/Loading';
 import { useNavigation } from '@react-navigation/native';
 import OrderOption from '../component/OrderOption';
+import SearchOrder from '../component/SearchOrder'; // Import the SearchOrder component
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
@@ -13,9 +14,10 @@ const OrderList = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const navigation = useNavigation();
 
-  const refreshOrders = async () => {
+  const refreshOrders = async (status, customerName) => {
     try {
-      const ordersData = await FetchOrders();
+      setLoading(true);
+      const ordersData = await FetchOrders(status, customerName);
       // Sort orders by the most recent date
       ordersData.sort((a, b) => new Date(b.date) - new Date(a.date));
       setOrders(ordersData);
@@ -46,7 +48,10 @@ const OrderList = () => {
 
   return (
     <ScrollView style={[t.mB20]}>
-      <Text style={[t.textCenter, t.text2xl, t.fontBold, t.mB4, t.textPink700]}>Order List</Text>
+      <View style={[t.pX4, t.pT4]}>
+        <Text style={[t.textCenter, t.text2xl, t.fontBold, t.mB4, t.textPink700]}>Order List</Text>
+        <SearchOrder onSearch={refreshOrders} />
+      </View>
       {orders.map((item) => (
         <Pressable
           key={item._id}

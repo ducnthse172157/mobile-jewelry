@@ -1,9 +1,23 @@
 // src/service/Order.js
 import axiosInstance from './Auth';
 
-export const FetchOrders = async () => {
+export const FetchOrders = async (status, customerName) => {
   try {
-    const response = await axiosInstance.get('/orders');
+    let url = '/orders';
+    const params = [];
+
+    if (status) {
+      params.push(`status=${encodeURIComponent(status)}`);
+    }
+    if (customerName) {
+      params.push(`customerName=${encodeURIComponent(customerName)}`);
+    }
+
+    if (params.length > 0) {
+      url += `?${params.join('&')}`;
+    }
+
+    const response = await axiosInstance.get(url);
     return response.data.orders;
   } catch (error) {
     console.error('Error fetching orders:', error);
@@ -40,6 +54,7 @@ export const UpdateOrder = async (id, order) => {
     throw error;
   }
 };
+
 
 export const CreateOrderDetail = async (orderDetail) => {
   try {
