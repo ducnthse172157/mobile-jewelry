@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, TextInput, Text, Pressable } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { Formik } from "formik";
+import LoadingAnimation from '../component/Loading';
 import { CustomerSchema } from "../constants/schema";
 import { UpdateCustomer } from "../service/Order";
 
-const CustomerEdit = ({ customer, onSave, onCancel }) => {
+const CustomerEdit = ({ route, navigation }) => {
+  const { customer } = route.params;
+  const [loading, setLoading] = useState(false);
+
   const handleSave = async (values) => {
     try {
-      const updatedCustomer = await UpdateCustomer(customer._id, values);
-      onSave(updatedCustomer);
+      setLoading(true);
+      await UpdateCustomer(customer._id, values);
+      navigation.goBack();
     } catch (error) {
       console.error("Error updating customer:", error);
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return <LoadingAnimation />;
+  }
 
   return (
     <Formik
@@ -24,7 +35,7 @@ const CustomerEdit = ({ customer, onSave, onCancel }) => {
         address: customer.address || "",
       }}
       validationSchema={CustomerSchema}
-      onSubmit={(values) => handleSave(values)}
+      onSubmit={handleSave}
     >
       {({
         handleChange,
@@ -34,7 +45,7 @@ const CustomerEdit = ({ customer, onSave, onCancel }) => {
         errors,
         touched,
       }) => (
-        <View style={[t.p4, t.borderB, t.borderPink600]}>
+        <View style={[t.p4]}>
           <Text style={[t.textPink800, t.textLg, t.mB2]}>
             Edit Customer Information
           </Text>
@@ -87,7 +98,7 @@ const CustomerEdit = ({ customer, onSave, onCancel }) => {
             </Pressable>
             <Pressable
               style={[t.bgGray600, t.p2, t.roundedLg]}
-              onPress={onCancel}
+              onPress={() => navigation.goBack()}
             >
               <Text style={[t.textWhite]}>Cancel</Text>
             </Pressable>

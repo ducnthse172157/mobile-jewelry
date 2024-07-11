@@ -5,7 +5,7 @@ import { t } from "react-native-tailwindcss";
 import { MaterialIcons } from "@expo/vector-icons";
 import Popup from "../component/Popup";
 
-const ViewCustomer = ({ customer, onEdit, onDelete }) => {
+const ViewCustomer = ({ customer, onDelete }) => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   return (
@@ -13,9 +13,6 @@ const ViewCustomer = ({ customer, onEdit, onDelete }) => {
       <View style={[t.flexRow, t.justifyBetween, t.itemsCenter]}>
         <Text style={[t.textPink800, t.textLg]}>Customer Information</Text>
         <View style={[t.flexRow]}>
-          <Pressable onPress={onEdit}>
-            <MaterialIcons name="edit" size={24} color="black" />
-          </Pressable>
           <Pressable onPress={() => setShowDeletePopup(true)} style={[t.mL4]}>
             <MaterialIcons name="delete" size={24} color="black" />
           </Pressable>

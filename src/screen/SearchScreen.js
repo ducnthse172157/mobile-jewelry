@@ -56,13 +56,14 @@ const SearchScreen = ({ navigation }) => {
   const filterProducts = (categoryId, productTypeId) => {
     let filtered = products;
     if (categoryId && categoryId !== 'all') {
-      filtered = filtered.filter(product => product.productTypeID.categoryID._id === categoryId);
+      filtered = filtered.filter(product => product.productTypeID && product.productTypeID.categoryID && product.productTypeID.categoryID._id === categoryId);
     }
     if (productTypeId && productTypeId !== 'all') {
-      filtered = filtered.filter(product => product.productTypeID._id === productTypeId);
+      filtered = filtered.filter(product => product.productTypeID && product.productTypeID._id === productTypeId);
     }
     setFilteredProducts(filtered);
   };
+  
 
   const handleSearch = (filteredProducts) => {
     setFilteredProducts(filteredProducts);

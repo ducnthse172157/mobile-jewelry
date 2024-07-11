@@ -6,7 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 import Checkout from "../feature/Checkout";
 import AddCustomer from "../feature/AddCustomer";
 import ViewCustomer from "../feature/ViewCustomer";
-import CustomerEdit from "../feature/CustomerEdit";
 import PaymentMethod from "../feature/PaymentMethod";
 import LoadingAnimation from "../component/Loading";
 import { useToast } from "../component/Toast";
@@ -14,6 +13,7 @@ import { FetchStores, CreateOrder, CreateOrderDetail } from "../service/Order";
 
 const CheckoutScreen = ({ route }) => {
   const { order } = route.params;
+  const [orders, setOrders] = useState(order);
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentScreen, setCurrentScreen] = useState("addCustomer");
@@ -40,6 +40,22 @@ const CheckoutScreen = ({ route }) => {
     getStores();
   }, []);
 
+  const updateQuantity = (productId, quantityChange) => {
+    const updatedOrder = orders.map((product) => {
+      if (product._id === productId) {
+        const newQuantity = product.quantity + quantityChange;
+        return { ...product, quantity: newQuantity > 0 ? newQuantity : 1 };
+      }
+      return product;
+    });
+    setOrders(updatedOrder);
+  };
+
+  const removeProduct = (productId) => {
+    const updatedOrder = orders.filter((product) => product._id !== productId);
+    setOrders(updatedOrder);
+  };
+
   const handleCompleteCheckout = async () => {
     setLoading(true);
     try {
@@ -62,7 +78,7 @@ const CheckoutScreen = ({ route }) => {
 
       const orderDetailData = {
         orderID: createdOrder._id,
-        products: order.map(product => ({ productID: product._id, quantity: product.quantity }))
+        products: orders.map(product => ({ productID: product._id, quantity: product.quantity }))
       };
 
       console.log('Order Detail Data:', orderDetailData);
@@ -80,32 +96,16 @@ const CheckoutScreen = ({ route }) => {
     }
   };
 
-  const handleCancelEdit = () => {
-    setCurrentScreen("viewCustomer");
-  };
-
   const renderCustomerContent = () => {
     switch (currentScreen) {
       case "viewCustomer":
         return (
           <ViewCustomer
             customer={customer}
-            onEdit={() => setCurrentScreen("editCustomer")}
             onDelete={() => {
               setCustomer(null);
               setCurrentScreen("addCustomer");
             }}
-          />
-        );
-      case "editCustomer":
-        return (
-          <CustomerEdit
-            customer={customer}
-            onSave={(updatedCustomer) => {
-              setCustomer(updatedCustomer);
-              setCurrentScreen("addCustomer");
-            }}
-            onCancel={handleCancelEdit}
           />
         );
       default:
@@ -131,9 +131,16 @@ const CheckoutScreen = ({ route }) => {
         <LoadingAnimation />
       ) : (
         <ScrollView>
-          <Checkout order={order} />
+          <Checkout 
+            orders={orders} 
+            updateQuantity={updateQuantity} 
+            removeProduct={removeProduct} 
+          />
           {renderCustomerContent()}
-          <PaymentMethod selectedPayments={selectedPayments} setSelectedPayments={setSelectedPayments} />
+          <PaymentMethod 
+            selectedPayments={selectedPayments} 
+            setSelectedPayments={setSelectedPayments} 
+          />
           <Picker
             selectedValue={selectedStore}
             style={[t.border, t.borderPink600, t.p2, t.mT4]}
