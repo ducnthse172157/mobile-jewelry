@@ -36,7 +36,7 @@ const OrderScreen = () => {
               t.mR4,
               t.p2,
               t.textLg,
-              selectedSession === 'orders' ? t.textPink500 : t.textGray100,
+              selectedSession === 'orders' ? t.textPink500 : t.textGray600,
               selectedSession === 'orders' && t.fontBold,
             ]}
           >
@@ -49,7 +49,7 @@ const OrderScreen = () => {
               t.mL4,
               t.p2,
               t.textLg,
-              selectedSession === 'customers' ? t.textPink500 : t.textGray100,
+              selectedSession === 'customers' ? t.textPink500 : t.textGray600,
               selectedSession === 'customers' && t.fontBold,
             ]}
           >
@@ -74,7 +74,7 @@ const OrderScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.lightPink,
+    backgroundColor: colors.light,
   },
 });
 

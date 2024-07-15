@@ -5,16 +5,15 @@ import MainHeader from '../component/MainHeader';
 import ScreenHeader from '../component/ScreenHeader';
 import TopPlacesCarousel from '../component/TopJewelryCarousel';
 import { TOP_PLACES } from '../data';
-import SectionHeader from '../component/SectionHeader';
-import JewelrysList from '../component/JewelrysList';
 import MaterialList from '../feature/MaterialList';
 import GemstoneList from '../feature/GemstoneList';
-
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const [showMaterialsAndGemstones, setShowMaterialsAndGemstones] = useState(false);
   const [selectedSession, setSelectedSession] = useState('materials');
   const slideAnim = useRef(new Animated.Value(0)).current;
+  const navigation = useNavigation();
 
   useEffect(() => {
     Animated.timing(slideAnim, {
@@ -40,48 +39,46 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <MainHeader title="Alumina" />
+      <MainHeader title="Alumina" navigation={navigation} />
       <ScreenHeader mainTitle="Find Your Jewelry" secondTitle="Find Your Beauty" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <TopPlacesCarousel list={TOP_PLACES} />
-        <SectionHeader title="Best Seller" buttonTitle="See All" />
-        <JewelrysList />
         <Pressable onPress={handlePress} style={styles.knowMoreButton}>
           <Text style={styles.knowMoreButtonText}>Know more about Jewelry</Text>
         </Pressable>
         {showMaterialsAndGemstones && (
           <>
             <View style={styles.sessionContainer}>
-          <View style={styles.sessionHeader}>
-            <Pressable onPress={() => setSelectedSession('materials')}>
-              <Text
-                style={[
-                  styles.sessionText,
-                  selectedSession === 'materials' && styles.activeSessionText,
-                ]}
-              >
-                Materials
-              </Text>
-            </Pressable>
-            <Pressable onPress={() => setSelectedSession('gemstones')}>
-              <Text
-                style={[
-                  styles.sessionText,
-                  selectedSession === 'gemstones' && styles.activeSessionText,
-                ]}
-              >
-                Gemstones
-              </Text>
-            </Pressable>
-            <Animated.View
-              style={[
-                styles.underline,
-                { width: underlineWidth, left: underlineLeft },
-              ]}
-            />
-          </View>
-          {selectedSession === 'materials' ? <MaterialList /> : <GemstoneList />}
-        </View>
+              <View style={styles.sessionHeader}>
+                <Pressable onPress={() => setSelectedSession('materials')}>
+                  <Text
+                    style={[
+                      styles.sessionText,
+                      selectedSession === 'materials' && styles.activeSessionText,
+                    ]}
+                  >
+                    Materials
+                  </Text>
+                </Pressable>
+                <Pressable onPress={() => setSelectedSession('gemstones')}>
+                  <Text
+                    style={[
+                      styles.sessionText,
+                      selectedSession === 'gemstones' && styles.activeSessionText,
+                    ]}
+                  >
+                    Gemstones
+                  </Text>
+                </Pressable>
+                <Animated.View
+                  style={[
+                    styles.underline,
+                    { width: underlineWidth, left: underlineLeft },
+                  ]}
+                />
+              </View>
+              {selectedSession === 'materials' ? <MaterialList /> : <GemstoneList />}
+            </View>
           </>
         )}
       </ScrollView>
@@ -92,7 +89,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.lightPink,
+    backgroundColor: colors.light,
   },
   knowMoreButton: {
     backgroundColor: '#F472B6',
@@ -118,7 +115,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     paddingVertical: 8,
     fontSize: 18,
-    color: 'white',
+    color: 'gray',
   },
   activeSessionText: {
     color: '#F472B6',

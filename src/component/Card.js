@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { colors, shadow, sizes } from '../constants/theme';
+import { colors, sizes } from '../constants/theme';
 
 const Card = ({ children, style }) => {
   return (
-    <View style={[styles.card, shadow.light, style]}>
+    <View style={[styles.card, style]}>
       {children}
     </View>
   );
@@ -13,8 +13,11 @@ const Card = ({ children, style }) => {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.white,
+    borderColor: colors.accentPink, 
+    borderWidth: 1,
     borderRadius: sizes.radius,
     overflow: 'hidden',
+  
   },
 });
 

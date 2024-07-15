@@ -52,6 +52,8 @@ const styles = StyleSheet.create({
     height: 54,
     flex: 1,
     ...shadow.light,
+    borderColor: colors.accentPink, 
+    borderWidth: 1,
   },
 });
 

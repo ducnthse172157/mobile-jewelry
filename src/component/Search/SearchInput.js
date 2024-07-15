@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
   },
   inner: {
     flexDirection: 'row',
+    borderBlockStartColor: colors.lightPink,
   },
   search: {
     position: 'absolute',
@@ -98,6 +99,8 @@ const styles = StyleSheet.create({
     height: 54,
     flex: 1,
     ...shadow.light,
+    borderColor: colors.accentPink, 
+    borderWidth: 1,            
   },
   filter: {
     position: 'absolute',
